@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réflexologie — Aux Merveilles des Essences · Oron</title>
+  <meta name="description" content="La réflexologie plantaire, palmaire et faciale — soin par zones réflexes. Cabinet à Oron, Vaud." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #FFFFFF; --surface: #F5F2EC; --ink: #1C1C1A; --mid: #6B6560;
+      --faint: #AFA99E; --line: rgba(28,28,26,.08); --accent: #2A6148;
+      --a-light: #E8F3EC; --bronze: #8A5E32; --dark: #1A3629;
+      --ease: cubic-bezier(.16,1,.3,1);
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    .wrap { max-width: 1280px; margin-inline: auto; padding-inline: clamp(1.5rem,5vw,4rem); }
+    .lbl { font-size: .65rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); }
+
+    /* Nav */
+    .nav {
+      position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 90;
+      padding-block: 1.2rem;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .3s var(--ease);
+    }
+    .nav.stuck { box-shadow: 0 2px 24px rgba(28,28,26,.06); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink); white-space: nowrap; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: .75rem; color: var(--mid); transition: color .2s; white-space: nowrap; position: relative; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      font-size: .72rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+      color: #fff; background: var(--accent); border-radius: 100px; padding: .6em 1.4em;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: #1e4a35; }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; padding: .3rem; }
+    .nav-burger span { display: block; width: 20px; height: 1.5px; background: var(--ink); border-radius: 2px; }
+
+    /* Page header */
+    .page-header {
+      padding-block: clamp(8rem, 14vh, 11rem) clamp(4rem, 6vh, 6rem);
+      border-bottom: 1px solid var(--line);
+    }
+    .page-header .back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .72rem; color: var(--mid); margin-bottom: 2rem;
+      transition: color .2s;
+    }
+    .page-header .back:hover { color: var(--accent); }
+    .page-header .back svg { transition: transform .2s var(--ease); }
+    .page-header .back:hover svg { transform: translateX(-3px); }
+    .page-hl {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 400; line-height: .96; letter-spacing: -.03em;
+    }
+    .page-hl em { font-style: italic; color: var(--accent); }
+    .page-sub {
+      font-size: 1.05rem; color: var(--mid); line-height: 1.8;
+      max-width: 52ch; margin-top: 1.5rem;
+    }
+
+    /* Content */
+    .content { padding-block: clamp(4rem, 7vw, 7rem); }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(4rem, 8vw, 8rem);
+      align-items: start;
+    }
+    .content-aside {}
+    .aside-label { margin-bottom: 1.5rem; }
+    .aside-tags { display: flex; flex-direction: column; gap: .6rem; }
+    .aside-tag {
+      font-size: .78rem; color: var(--mid); padding: .75rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .72rem; letter-spacing: .04em; }
+
+    .content-body h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 400; line-height: 1.15; letter-spacing: -.02em;
+      margin-bottom: 1.25rem; color: var(--ink);
+    }
+    .content-body h2 em { font-style: italic; color: var(--accent); }
+    .content-body p {
+      font-size: .95rem; color: var(--mid); line-height: 1.85;
+      margin-bottom: 1.25rem; max-width: 60ch;
+    }
+    .content-body .divider { height: 1px; background: var(--line); margin-block: 2.5rem; }
+
+    /* CTA */
+    .cta-strip {
+      background: var(--surface);
+      border-block: 1px solid var(--line);
+      padding-block: clamp(3.5rem, 6vw, 5rem);
+    }
+    .cta-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-text h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 400; letter-spacing: -.02em;
+    }
+    .cta-text p { font-size: .88rem; color: var(--mid); margin-top: .5rem; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .78rem; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase; color: #fff; background: var(--accent);
+      border-radius: 100px; padding: 1em 2.2em;
+      transition: background .2s, transform .15s var(--ease);
+      white-space: nowrap;
+    }
+    .btn-dark:hover { background: #1e4a35; transform: translateY(-2px); }
+
+    /* Footer */
+    .footer {
+      padding-block: 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-copy { font-size: .72rem; color: var(--faint); }
+
+    /* Responsive */
+    .step-list { margin-block: 1rem 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+    .step { font-size: .88rem; color: var(--mid); padding-left: 1.2rem; position: relative; line-height: 1.6; }
+    .step::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .75rem; }
+    .price-line { font-size: .85rem; color: var(--mid); }
+    .price-line strong { color: var(--bronze); font-weight: 500; font-family: var(--serif); font-size: 1.1rem; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .content-grid { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+    }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a href="index.html" class="nav-logo">Aux Merveilles des Essences</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="reflexologie.html" class="active">Réflexologie</a></li>
+        <li><a href="drainage.html">Drainage lymphatique</a></li>
+        <li><a href="aromatherapie.html">Aromathérapie</a></li>
+        <li><a href="gemmotherapie.html">Gemmothérapie</a></li>
+        <li><a href="fleurs-de-bach.html">Fleurs de Bach</a></li>
+        <li><a href="index.html#contact" class="nav-cta-wrap"><span class="nav-cta">Me contacter</span></a></li>
+      </ul>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="wrap">
+      <a href="index.html" class="back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Retour à l'accueil
+      </a>
+      <div class="lbl" style="margin-bottom:1rem">Soin</div>
+      <h1 class="page-hl">Réflexo<em>logie</em></h1>
+      <p class="page-sub">Une technique manuelle douce qui agit sur l'ensemble du corps à travers des zones précises des pieds, des mains ou du visage.</p>
+    </div>
+  </header>
+
+  <section class="content">
+    <div class="wrap">
+      <div class="content-grid">
+
+        <aside class="content-aside">
+          <div class="lbl aside-label">Informations pratiques</div>
+          <div class="aside-tags">
+            <div class="aside-tag"><strong>1ère séance</strong>environ 1h30 — CHF 110</div>
+            <div class="aside-tag"><strong>Séances suivantes</strong>environ 1h — CHF 100</div>
+            <div class="aside-tag"><strong>Forfait combiné</strong>Réflexologie + complément — CHF 130</div>
+            <div class="aside-tag"><strong>Zones travaillées</strong>Pieds · Mains · Visage</div>
+            <div class="aside-tag"><strong>Certifications</strong>ASCA · RME</div>
+          </div>
+        </aside>
+
+        <div class="content-body">
+          <h2>1ère séance <em>— 1h30</em></h2>
+          <p>La première séance commence par un échange approfondi pour mieux comprendre vos attentes, vos besoins et votre état de santé général. Cela permet de personnaliser le soin pour maximiser ses bienfaits.</p>
+          <div class="step-list">
+            <div class="step">Accueil et discussion sur vos besoins</div>
+            <div class="step">Séance de réflexologie adaptée</div>
+            <div class="step">Conseils personnalisés pour prolonger les bienfaits à domicile</div>
+          </div>
+          <p class="price-line">Tarif <strong>CHF 110</strong></p>
+
+          <div class="divider"></div>
+
+          <h2>Séances suivantes <em>— 1h</em></h2>
+          <p>Les séances de suivi se concentrent principalement sur le soin, tout en restant flexibles pour ajuster la méthode selon vos ressentis.</p>
+          <div class="step-list">
+            <div class="step">Bilan rapide sur vos évaluations et ressentis</div>
+            <div class="step">Séance de réflexologie ciblée</div>
+          </div>
+          <p class="price-line">Tarif <strong>CHF 100</strong></p>
+
+          <div class="divider"></div>
+
+          <h2>Forfait <em>combiné</em></h2>
+          <p>Bénéficiez d'une approche complète pour un bien-être global. La séance de réflexologie est accompagnée d'un flacon de Fleurs de Bach, de bourgeons ou d'une synergie d'huiles essentielles — selon vos besoins du moment.</p>
+          <p class="price-line">Tarif <strong>CHF 130</strong></p>
+
+          <div class="divider"></div>
+
+          <h2>Les trois <em>variantes</em></h2>
+          <p><strong style="color:var(--ink)">Plantaire</strong> — la plus connue. On travaille sous les pieds, une surface riche en terminaisons nerveuses.</p>
+          <p><strong style="color:var(--ink)">Palmaire</strong> — sur les mains, utile quand les pieds ne sont pas accessibles.</p>
+          <p><strong style="color:var(--ink)">Faciale</strong> — plus fine, elle agit sur les tensions cranio-faciales et sinus.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-strip">
+    <div class="wrap">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h3>Envie d'essayer ?</h3>
+          <p>Prenez contact pour convenir d'un rendez-vous à Oron, Vaud.</p>
+        </div>
+        <a href="index.html#contact" class="btn-dark">Me contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span class="footer-copy">© 2023–2026 Aux Merveilles des Essences · Oron, Vaud</span>
+      <a href="index.html" class="footer-copy" style="text-decoration:underline;text-underline-offset:3px">Retour à l'accueil</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40), { passive: true });
+    document.getElementById('burger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

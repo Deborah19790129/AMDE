@@ -128,44 +128,41 @@
 
     /* ── Hero ────────────────────────────────────────── */
     .hero {
-      min-height: 60dvh;
+      min-height: 88dvh;
+      position: relative;
       display: flex;
       align-items: center;
       padding-block: clamp(9rem, 16vh, 12rem) clamp(5rem, 8vh, 7rem);
       border-bottom: 1px solid var(--line);
-    }
-    .hero .wrap { width: 100%; }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 6rem);
-      align-items: center;
+      overflow: hidden;
     }
 
-    .hero-left { max-width: 60ch; }
-
-    .hero-right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      animation: fadeRise .9s var(--ease) .6s forwards;
-    }
-    .hero-video {
-      width: 100%;
-      max-width: 520px;
-      aspect-ratio: 9/16;
+    /* Background video */
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 24px 80px rgba(28,28,26,.12), 0 4px 16px rgba(28,28,26,.08);
+      object-position: center;
+      opacity: 0;
+      transition: opacity 1.8s ease;
+      z-index: 0;
+    }
+    .hero-video-bg.ready { opacity: 1; }
+
+    /* Gradient: white on left fades to transparent, full white on bottom */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, #fff 38%, rgba(255,255,255,.6) 58%, transparent 80%),
+        linear-gradient(to top, #fff 0%, transparent 18%);
+      z-index: 1;
+      pointer-events: none;
     }
 
-    @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-right { order: -1; }
-      .hero-video { max-width: 300px; aspect-ratio: 9/16; }
-    }
+    .hero .wrap { width: 100%; position: relative; z-index: 2; }
+    .hero-left { max-width: 58ch; }
 
     .hero-overline {
       display: flex; align-items: center; gap: 1rem;
@@ -309,59 +306,40 @@
       line-height: 1.75; max-width: 44ch; align-self: end;
     }
 
-    /* Accordion list */
+    /* Services simple list */
     .svc-list { border-bottom: 1px solid var(--line); }
     .svc-item {
       border-top: 1px solid var(--line);
-      transition: background .25s;
-      border-radius: 12px;
     }
-    .svc-item:hover { background: var(--surface); }
-    .svc-row {
-      display: grid;
-      grid-template-columns: 3rem 1fr 8rem 7rem 2rem;
+    .svc-item a {
+      display: flex;
       align-items: center;
-      gap: 1rem;
-      padding-block: 1.8rem;
-      cursor: pointer;
-      border-radius: 12px;
-      padding-inline: 1rem;
+      justify-content: space-between;
+      gap: 2rem;
+      padding-block: 1.6rem;
+      padding-inline: .5rem;
+      transition: opacity .2s;
     }
+    .svc-item a:hover { opacity: .65; }
+    .svc-item a:hover .svc-arrow { transform: translateX(4px); }
+    .svc-main { display: flex; align-items: baseline; gap: 1.5rem; }
     .svc-num {
-      font-size: .65rem; font-weight: 500;
+      font-size: .62rem; font-weight: 500;
       letter-spacing: .1em; color: var(--faint);
-      font-family: var(--mono);
     }
     .svc-name {
       font-family: var(--serif);
       font-size: 1.3rem; font-weight: 400;
       color: var(--ink); letter-spacing: -.01em;
-      line-height: 1.2;
     }
-    .svc-dur { font-size: .78rem; color: var(--mid); }
-    .svc-price {
-      font-family: var(--serif);
-      font-size: 1.15rem; color: var(--bronze);
-      text-align: right;
-    }
+    .svc-desc { font-size: .82rem; color: var(--mid); max-width: 44ch; }
     .svc-arrow {
-      display: flex; align-items: center; justify-content: center;
       color: var(--faint);
-      transition: transform .35s var(--ease), color .2s;
+      flex-shrink: 0;
+      transition: transform .25s var(--ease);
     }
-    .svc-item.open .svc-arrow { transform: rotate(45deg); color: var(--ink); }
 
-    .svc-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height .5s var(--ease);
-    }
-    .svc-body-inner {
-      padding-inline: .5rem;
-      padding-block: 0 1.75rem;
-      display: grid;
-      grid-template-columns: 3rem 1fr;
-      gap: 1rem;
-    }
+    /* (unused, kept for compat) */
     .svc-body-inner p {
       font-size: .88rem; color: var(--mid);
       line-height: 1.8; max-width: 60ch;
@@ -473,11 +451,34 @@
       background: radial-gradient(ellipse at 70% 50%, rgba(42,97,72,.15) 0%, transparent 70%);
       pointer-events: none;
     }
-    .contact-grid {
+    .contact-simple {
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: clamp(4rem, 7vw, 8rem);
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(4rem, 8vw, 10rem);
       align-items: start;
+    }
+    .contact-simple-right {
+      display: flex; flex-direction: column;
+    }
+    .contact-line {
+      display: flex; align-items: baseline; gap: 2rem;
+      padding-block: 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: opacity .2s;
+    }
+    .contact-line:first-child { border-top: 1px solid rgba(255,255,255,.07); }
+    .contact-line:hover { opacity: .75; }
+    .contact-line-lbl {
+      font-size: .62rem; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.25);
+      width: 5.5rem; flex-shrink: 0;
+    }
+    .contact-line-val {
+      font-size: .95rem; color: rgba(255,255,255,.75);
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      .contact-simple { grid-template-columns: 1fr; gap: 3rem; }
     }
     .contact-lbl { color: rgba(255,255,255,.3); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }
     .contact-hl {
@@ -639,12 +640,11 @@
     <div class="wrap">
       <a href="#" class="nav-logo">Aux Merveilles des Essences</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#reflexologie">Réflexologie</a></li>
-        <li><a href="#drainage">Drainage lymphatique</a></li>
-        <li><a href="#aromatherapie">Aromathérapie</a></li>
-        <li><a href="#gemmotherapie">Gemmothérapie</a></li>
-        <li><a href="#fleurs-de-bach">Fleurs de Bach</a></li>
-        <li><a href="#guide">Guide pratique</a></li>
+        <li><a href="reflexologie.html">Réflexologie</a></li>
+        <li><a href="drainage.html">Drainage lymphatique</a></li>
+        <li><a href="aromatherapie.html">Aromathérapie</a></li>
+        <li><a href="gemmotherapie.html">Gemmothérapie</a></li>
+        <li><a href="fleurs-de-bach.html">Fleurs de Bach</a></li>
         <li><a href="#contact" class="nav-cta-wrap"><span class="nav-cta">Me contacter</span></a></li>
       </ul>
       <button class="nav-burger" id="burger" aria-label="Menu">
@@ -655,18 +655,15 @@
 
   <!-- Hero -->
   <header class="hero">
+    <video class="hero-video-bg" autoplay muted loop playsinline>
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
     <div class="wrap">
-      <div class="hero-inner">
       <div class="hero-left">
-        <div class="hero-overline">
-          <span class="hero-overline-dot"></span>
-          <span class="lbl">Réflexologie · Oron, Vaud</span>
-        </div>
-
         <h1 class="hero-hl">
           <span class="clip-wrap"><span class="clip-line" id="hl1">Retrouver</span></span>
-          <span class="clip-wrap"><span class="clip-line" id="hl2"><em>l'équilibre</em></span></span>
-          <span class="clip-wrap"><span class="clip-line" id="hl3">naturel.</span></span>
+          <span class="clip-wrap"><span class="clip-line" id="hl2">l'équilibre</span></span>
+          <span class="clip-wrap"><span class="clip-line" id="hl3"><em>naturel.</em></span></span>
         </h1>
 
         <p class="hero-body">
@@ -684,24 +681,7 @@
           </a>
         </div>
 
-        <div class="hero-trust">
-          <span class="trust-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Certifiée ASCA
-          </span>
-          <span class="trust-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Sur rendez-vous · Oron, Vaud
-          </span>
-        </div>
 
-      </div>
-
-      <div class="hero-right">
-        <video class="hero-video" autoplay muted loop playsinline>
-          <source src="hero.mp4" type="video/mp4" />
-        </video>
-      </div>
       </div>
     </div>
   </header>
@@ -715,7 +695,7 @@
       <span class="ticker-item">Réflexologie faciale<span class="ticker-sep"></span></span>
       <span class="ticker-item">Oron — Vaud<span class="ticker-sep"></span></span>
       <span class="ticker-item">Réflexologie palmaire<span class="ticker-sep"></span></span>
-      <span class="ticker-item">Depuis 2023<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Oron — Vaud<span class="ticker-sep"></span></span>
       <span class="ticker-item">Soin combiné<span class="ticker-sep"></span></span>
       <span class="ticker-item">Sur rendez-vous<span class="ticker-sep"></span></span>
       <span class="ticker-item">Réflexologie plantaire<span class="ticker-sep"></span></span>
@@ -723,7 +703,7 @@
       <span class="ticker-item">Réflexologie faciale<span class="ticker-sep"></span></span>
       <span class="ticker-item">Oron — Vaud<span class="ticker-sep"></span></span>
       <span class="ticker-item">Réflexologie palmaire<span class="ticker-sep"></span></span>
-      <span class="ticker-item">Depuis 2023<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Oron — Vaud<span class="ticker-sep"></span></span>
       <span class="ticker-item">Soin combiné<span class="ticker-sep"></span></span>
       <span class="ticker-item">Sur rendez-vous<span class="ticker-sep"></span></span>
     </div>
@@ -742,94 +722,59 @@
 
       <div class="svc-list rise">
 
-        <div class="svc-item" id="reflexologie">
-          <div class="svc-row" onclick="toggleSvc(this)">
-            <span class="svc-num">01</span>
-            <span class="svc-name">Réflexologie</span>
-            <span class="svc-dur">60–75 min</span>
-            <span class="svc-price">CHF 90</span>
-            <span class="svc-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
-          </div>
-          <div class="svc-body">
-            <div class="svc-body-inner">
-              <span></span>
-              <p>Technique manuelle qui travaille sur des zones réflexes des pieds, des mains ou du visage. Chaque zone correspond à un organe ou un système du corps. La séance commence toujours par un bilan du jour.</p>
+        <div class="svc-item">
+          <a href="reflexologie.html">
+            <div class="svc-main">
+              <span class="svc-num">01</span>
+              <span class="svc-name">Réflexologie</span>
             </div>
-          </div>
+            <span class="svc-desc">Plantaire, palmaire ou faciale — une pression ciblée sur les zones réflexes pour soutenir les fonctions naturelles du corps.</span>
+            <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
         </div>
 
-        <div class="svc-item" id="drainage">
-          <div class="svc-row" onclick="toggleSvc(this)">
-            <span class="svc-num">02</span>
-            <span class="svc-name">Drainage lymphatique</span>
-            <span class="svc-dur">60 min</span>
-            <span class="svc-price">CHF 90</span>
-            <span class="svc-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
-          </div>
-          <div class="svc-body">
-            <div class="svc-body-inner">
-              <span></span>
-              <p>Massage très doux qui stimule la circulation de la lymphe. Aide à réduire les gonflements, soutient le système immunitaire et favorise l'élimination des déchets. Particulièrement indiqué en cas de jambes lourdes ou de rétention d'eau.</p>
+        <div class="svc-item">
+          <a href="drainage.html">
+            <div class="svc-main">
+              <span class="svc-num">02</span>
+              <span class="svc-name">Drainage lymphatique</span>
             </div>
-          </div>
+            <span class="svc-desc">Massage doux par voie réflexe pour stimuler la circulation lymphatique et alléger le corps.</span>
+            <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
         </div>
 
-        <div class="svc-item" id="aromatherapie">
-          <div class="svc-row" onclick="toggleSvc(this)">
-            <span class="svc-num">03</span>
-            <span class="svc-name">Aromathérapie</span>
-            <span class="svc-dur">45–60 min</span>
-            <span class="svc-price">CHF 85</span>
-            <span class="svc-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
-          </div>
-          <div class="svc-body">
-            <div class="svc-body-inner">
-              <span></span>
-              <p>Utilisation d'huiles essentielles choisies selon vos besoins du moment. En diffusion, en application ou en massage. Un protocole personnalisé est établi à chaque séance selon l'objectif visé.</p>
+        <div class="svc-item">
+          <a href="aromatherapie.html">
+            <div class="svc-main">
+              <span class="svc-num">03</span>
+              <span class="svc-name">Aromathérapie</span>
             </div>
-          </div>
+            <span class="svc-desc">Sélection et préparation d'un mélange d'huiles essentielles personnalisé selon vos besoins.</span>
+            <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
         </div>
 
-        <div class="svc-item" id="gemmotherapie">
-          <div class="svc-row" onclick="toggleSvc(this)">
-            <span class="svc-num">04</span>
-            <span class="svc-name">Gemmothérapie</span>
-            <span class="svc-dur">Suivi sur mesure</span>
-            <span class="svc-price">Sur devis</span>
-            <span class="svc-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
-          </div>
-          <div class="svc-body">
-            <div class="svc-body-inner">
-              <span></span>
-              <p>Méthode qui utilise les bourgeons et jeunes pousses de plantes, riches en substances actives. Ces tissus en pleine croissance ont un fort potentiel de régénération. Pris en gouttes, ils agissent en profondeur sur les organes ciblés.</p>
+        <div class="svc-item">
+          <a href="gemmotherapie.html">
+            <div class="svc-main">
+              <span class="svc-num">04</span>
+              <span class="svc-name">Gemmothérapie</span>
             </div>
-          </div>
+            <span class="svc-desc">Cures de macérats de bourgeons pour soutenir la régénération et la vitalité en profondeur.</span>
+            <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
         </div>
 
-        <div class="svc-item" id="fleurs-de-bach">
-          <div class="svc-row" onclick="toggleSvc(this)">
-            <span class="svc-num">05</span>
-            <span class="svc-name">Fleurs de Bach</span>
-            <span class="svc-dur">Suivi sur mesure</span>
-            <span class="svc-price">Sur devis</span>
-            <span class="svc-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </span>
-          </div>
-          <div class="svc-body">
-            <div class="svc-body-inner">
-              <span></span>
-              <p>38 élixirs floraux mis au point par le Dr Bach pour agir sur les états émotionnels. Peur, doute, découragement, hypersensibilité — chaque élixir correspond à un état précis. Un mélange personnalisé est préparé après un entretien.</p>
+        <div class="svc-item">
+          <a href="fleurs-de-bach.html">
+            <div class="svc-main">
+              <span class="svc-num">05</span>
+              <span class="svc-name">Fleurs de Bach</span>
             </div>
-          </div>
+            <span class="svc-desc">38 élixirs floraux pour travailler sur les états émotionnels et retrouver l'équilibre intérieur.</span>
+            <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
         </div>
 
       </div>
@@ -893,69 +838,38 @@
   <!-- Contact -->
   <section class="contact" id="contact">
     <div class="wrap">
-      <div class="contact-grid">
+      <div class="contact-simple rise">
 
-        <div class="rise">
-          <span class="contact-lbl">Contact &amp; rendez-vous</span>
-          <h2 class="contact-hl">Commençons<br><em>votre accompagnement</em></h2>
-          <p class="contact-body">Je réponds à toutes les demandes sous 24 heures. Précisez vos disponibilités ou votre objectif dans le message — cela aide à préparer la première séance.</p>
-          <div class="contact-info">
-            <div class="contact-row">
-              <span class="contact-row-lbl">Adresse</span>
-              <span class="contact-row-val">11 Le Bourg, 1610 Oron, VD</span>
-            </div>
-            <div class="contact-row">
-              <span class="contact-row-lbl">Téléphone</span>
-              <span class="contact-row-val"><a href="tel:+41788438415">078 843 84 15</a></span>
-            </div>
-            <div class="contact-row">
-              <span class="contact-row-lbl">Horaires</span>
-              <span class="contact-row-val">Lun–Ven 9h–19h · Sam 9h–14h</span>
-            </div>
-            <div class="contact-row">
-              <span class="contact-row-lbl">Modalité</span>
-              <span class="contact-row-val">Sur rendez-vous uniquement</span>
-            </div>
-          </div>
+        <div class="contact-simple-left">
+          <span class="contact-lbl">Rendez-vous</span>
+          <h2 class="contact-hl">Déborah<br><em>Menoud Bieri</em></h2>
+          <p class="contact-body">Certifiée ASCA · Sur rendez-vous</p>
         </div>
 
-        <form class="form rise" data-d="2" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
-          <div class="form-2col">
-            <div class="fg">
-              <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" placeholder="Marie" required />
-            </div>
-            <div class="fg">
-              <label for="nom">Nom</label>
-              <input type="text" id="nom" placeholder="Dupont" required />
-            </div>
+        <div class="contact-simple-right">
+          <a href="tel:+41788438415" class="contact-line">
+            <span class="contact-line-lbl">Téléphone</span>
+            <span class="contact-line-val">+41 78 843 84 15</span>
+          </a>
+          <a href="mailto:contact@aux-merveilles-des-essences.ch" class="contact-line">
+            <span class="contact-line-lbl">E-mail</span>
+            <span class="contact-line-val">contact@aux-merveilles-des-essences.ch</span>
+          </a>
+          <a href="https://maps.google.com/?q=Le+Bourg+11,+1610+Oron-la-Ville" target="_blank" rel="noopener" class="contact-line">
+            <span class="contact-line-lbl">Cabinet</span>
+            <span class="contact-line-val">Espace IN VIVO · Le Bourg 11<br>1610 Oron-la-Ville · 1er étage avec ascenseur</span>
+          </a>
+          <div class="contact-line" style="cursor:default">
+            <span class="contact-line-lbl">Horaires</span>
+            <span class="contact-line-val">
+              1 lundi sur 2 · 8h30–18h<br>
+              Mardi · 18h30–20h<br>
+              1 mercredi sur 2 · 13h30–18h<br>
+              1 samedi sur 2 · 9h–16h<br>
+              <span style="opacity:.5;font-size:.85em;display:block;margin-top:.35rem">Consultations à domicile sur demande</span>
+            </span>
           </div>
-          <div class="fg">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="marie@exemple.ch" required />
-          </div>
-          <div class="fg">
-            <label for="soin">Soin souhaité</label>
-            <select id="soin">
-              <option value="">— Choisir —</option>
-              <option>Réflexologie</option>
-              <option>Drainage lymphatique</option>
-              <option>Aromathérapie</option>
-              <option>Gemmothérapie</option>
-              <option>Fleurs de Bach</option>
-              <option>Renseignement</option>
-            </select>
-          </div>
-          <div class="fg">
-            <label for="msg">Message</label>
-            <textarea id="msg" placeholder="Vos disponibilités, votre objectif, ou toute question…"></textarea>
-          </div>
-          <button type="submit" class="form-submit">
-            Envoyer
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <p class="form-ok" id="formOk">Demande reçue — réponse sous 24 heures.</p>
-        </form>
+        </div>
 
       </div>
     </div>
@@ -978,6 +892,14 @@
   </footer>
 
   <script>
+    // ── Hero video fade-in ──────────────────────────────
+    const heroBg = document.querySelector('.hero-video-bg');
+    if (heroBg) {
+      heroBg.addEventListener('canplay', () => heroBg.classList.add('ready'), { once: true });
+      // fallback if already ready
+      if (heroBg.readyState >= 3) heroBg.classList.add('ready');
+    }
+
     // ── Nav stuck ──────────────────────────────────────
     const nav = document.getElementById('nav');
     const fab = document.getElementById('fab');
