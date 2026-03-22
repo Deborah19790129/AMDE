@@ -91,10 +91,32 @@
     .dropdown-item:hover .dropdown-item-arrow { opacity: 1; transform: translateX(3px); }
     .dropdown-item.current .dropdown-item-name { color: var(--accent); }
 
-    /* Page header */
+    /* Page header hero */
     .page-header {
-      padding-block: clamp(8rem, 14vh, 11rem) clamp(4rem, 6vh, 6rem);
+      position: relative;
+      min-height: clamp(380px, 55vh, 620px);
+      display: flex; align-items: flex-end;
       border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .page-header-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      z-index: 0;
+    }
+    .page-header-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,.15) 0%,
+        rgba(255,255,255,.55) 45%,
+        rgba(255,255,255,.92) 75%,
+        rgba(255,255,255,1) 100%);
+    }
+    .page-header-content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding-block: clamp(8rem, 14vh, 11rem) clamp(3rem, 5vh, 5rem);
     }
     .page-header .back {
       display: inline-flex; align-items: center; gap: .5rem;
@@ -110,14 +132,6 @@
     }
     .page-hl em { font-style: italic; color: var(--accent); }
     .page-sub { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 52ch; margin-top: 1.5rem; }
-
-    /* Page cover image */
-    .page-cover { width: 100%; overflow: hidden; }
-    .page-cover-img {
-      width: 100%; height: clamp(220px, 38vw, 480px);
-      object-fit: cover; object-position: center;
-      display: block;
-    }
 
     /* Content layout */
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
@@ -334,20 +348,20 @@
   </nav>
 
   <header class="page-header">
-    <div class="wrap">
-      <a href="index.html" class="back">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        Retour à l'accueil
-      </a>
-      <div class="lbl" style="margin-bottom:1rem">Soin</div>
-      <h1 class="page-hl">Réflexologie</h1>
-      <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
+    <img src="image1.jpeg" alt="Réflexologie — soin des pieds" class="page-header-bg" />
+    <div class="page-header-overlay"></div>
+    <div class="page-header-content">
+      <div class="wrap">
+        <a href="index.html" class="back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Retour à l'accueil
+        </a>
+        <div class="lbl" style="margin-bottom:1rem">Soin</div>
+        <h1 class="page-hl">Réflexologie</h1>
+        <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
+      </div>
     </div>
   </header>
-
-  <div class="page-cover">
-    <img src="image1.jpeg" alt="Réflexologie — soin des pieds" class="page-cover-img" />
-  </div>
 
   <section class="content">
     <div class="wrap">
