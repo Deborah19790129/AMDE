@@ -111,6 +111,14 @@
     .page-hl em { font-style: italic; color: var(--accent); }
     .page-sub { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 52ch; margin-top: 1.5rem; }
 
+    /* Page cover image */
+    .page-cover { width: 100%; overflow: hidden; }
+    .page-cover-img {
+      width: 100%; height: clamp(220px, 38vw, 480px);
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+
     /* Content layout */
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
 
@@ -336,6 +344,10 @@
       <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
     </div>
   </header>
+
+  <div class="page-cover">
+    <img src="image1.jpeg" alt="Réflexologie — soin des pieds" class="page-cover-img" />
+  </div>
 
   <section class="content">
     <div class="wrap">
