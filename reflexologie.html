@@ -112,26 +112,32 @@
 
     /* Content layout */
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
-    .content-grid {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: clamp(4rem, 8vw, 8rem);
-      align-items: start;
-    }
 
-    /* Sticky sidebar */
-    .content-aside {
-      position: sticky;
-      top: 6rem;
+    /* Price strip */
+    .price-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-block: 1.5rem 2.5rem;
     }
-    .aside-label { margin-bottom: 1.25rem; }
-    .aside-tag {
-      font-size: .82rem; color: var(--mid); padding: .9rem 0;
-      border-bottom: 1px solid var(--line); line-height: 1.5;
+    .price-strip-item {
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+      font-size: .82rem; color: var(--mid);
+      line-height: 1.5;
     }
-    .aside-tag:first-of-type { border-top: 1px solid var(--line); }
-    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
-    .aside-tag .price { color: var(--bronze); font-family: var(--serif); font-size: 1.1rem; }
+    .price-strip-item:last-child { border-right: none; }
+    .price-strip-item strong {
+      display: block; font-weight: 500; font-size: .68rem;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: .2rem;
+    }
+    .price-strip-item .price {
+      color: var(--bronze); font-family: var(--serif); font-size: 1.1rem;
+    }
 
     /* Body typography */
     .content-body h2 {
@@ -236,9 +242,12 @@
     .footer-copy { font-size: .72rem; color: var(--faint); }
 
     @media (max-width: 900px) {
-      .content-grid { grid-template-columns: 1fr; }
-      .content-aside { position: static; }
       .cta-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .price-strip { grid-template-columns: 1fr; }
+      .price-strip-item { border-right: none; border-bottom: 1px solid var(--line); }
+      .price-strip-item:last-child { border-bottom: none; }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -329,36 +338,7 @@
 
   <section class="content">
     <div class="wrap">
-      <div class="content-grid">
-
-        <!-- Sidebar sticky -->
-        <aside class="content-aside">
-          <div class="lbl aside-label">Informations pratiques</div>
-          <div class="aside-tag">
-            <strong>1ère séance</strong>
-            environ 1h30<br>
-            <span class="price">CHF 110</span>
-          </div>
-          <div class="aside-tag">
-            <strong>Séances suivantes</strong>
-            environ 1h<br>
-            <span class="price">CHF 100</span>
-          </div>
-          <div class="aside-tag">
-            <strong>Forfait combiné</strong>
-            Réflexologie + complément<br>
-            <span class="price">CHF 130</span>
-          </div>
-          <div class="aside-tag">
-            <strong>Zones travaillées</strong>
-            Pieds · Mains · Visage
-          </div>
-          <div class="aside-tag" style="border-bottom:none">
-            <strong>Cabinet</strong>
-            Espace IN VIVO, Oron-la-Ville<br>
-            <span style="font-size:.8rem;opacity:.7">+ consultations à domicile</span>
-          </div>
-        </aside>
+      <div>
 
         <!-- Main content -->
         <div class="content-body">
@@ -378,6 +358,29 @@
           <div class="step-list">
             <div class="step">Bilan rapide sur vos évaluations et ressentis</div>
             <div class="step">Séance de réflexologie ciblée</div>
+          </div>
+
+          <div class="price-strip">
+            <div class="price-strip-item">
+              <strong>1ère séance</strong>
+              environ 1h30<br><span class="price">CHF 110</span>
+            </div>
+            <div class="price-strip-item">
+              <strong>Séances suivantes</strong>
+              environ 1h<br><span class="price">CHF 100</span>
+            </div>
+            <div class="price-strip-item">
+              <strong>Forfait combiné</strong>
+              Réflexologie + complément<br><span class="price">CHF 130</span>
+            </div>
+            <div class="price-strip-item">
+              <strong>Zones travaillées</strong>
+              Pieds · Mains · Visage
+            </div>
+            <div class="price-strip-item">
+              <strong>Cabinet</strong>
+              Espace IN VIVO, Oron-la-Ville<br><span style="font-size:.8rem;opacity:.7">+ consultations à domicile</span>
+            </div>
           </div>
 
           <div class="divider"></div>

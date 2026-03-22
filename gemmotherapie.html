@@ -112,26 +112,32 @@
 
     /* Content layout */
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
-    .content-grid {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: clamp(4rem, 8vw, 8rem);
-      align-items: start;
-    }
 
-    /* Sticky sidebar */
-    .content-aside {
-      position: sticky;
-      top: 6rem;
+    /* Price strip */
+    .price-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-block: 1.5rem 2.5rem;
     }
-    .aside-label { margin-bottom: 1.25rem; }
-    .aside-tag {
-      font-size: .82rem; color: var(--mid); padding: .9rem 0;
-      border-bottom: 1px solid var(--line); line-height: 1.5;
+    .price-strip-item {
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+      font-size: .82rem; color: var(--mid);
+      line-height: 1.5;
     }
-    .aside-tag:first-of-type { border-top: 1px solid var(--line); }
-    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
-    .aside-tag .price { color: var(--bronze); font-family: var(--serif); font-size: 1.1rem; }
+    .price-strip-item:last-child { border-right: none; }
+    .price-strip-item strong {
+      display: block; font-weight: 500; font-size: .68rem;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: .2rem;
+    }
+    .price-strip-item .price {
+      color: var(--bronze); font-family: var(--serif); font-size: 1.1rem;
+    }
 
     /* Body typography */
     .content-body h2 {
@@ -222,10 +228,13 @@
     .footer-copy { font-size: .72rem; color: var(--faint); }
 
     @media (max-width: 900px) {
-      .content-grid { grid-template-columns: 1fr; }
-      .content-aside { position: static; }
       .cta-inner { flex-direction: column; align-items: flex-start; }
       .prop-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .price-strip { grid-template-columns: 1fr; }
+      .price-strip-item { border-right: none; border-bottom: 1px solid var(--line); }
+      .price-strip-item:last-child { border-bottom: none; }
     }
         @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -322,44 +331,40 @@
 
   <section class="content">
     <div class="wrap">
-      <div class="content-grid">
-
-        <!-- Sidebar sticky -->
-        <aside class="content-aside">
-          <div class="lbl aside-label">Informations pratiques</div>
-          <div class="aside-tag">
-            <strong>Consultation ~30 min</strong>
-            <span class="price">CHF 60</span><br>
-            flacon 30ml inclus
-          </div>
-          <div class="aside-tag">
-            <strong>Flacon seul</strong>
-            <span class="price">CHF 30</span><br>
-            en complément d'une séance
-          </div>
-          <div class="aside-tag">
-            <strong>Posologie adulte</strong>
-            5 à 20 gouttes par jour
-          </div>
-          <div class="aside-tag">
-            <strong>Posologie enfants</strong>
-            1 goutte par année d'âge
-          </div>
-          <div class="aside-tag">
-            <strong>Durée d'une cure</strong>
-            21 jours, pause 7 jours
-          </div>
-          <div class="aside-tag">
-            <strong>Cabinet</strong>
-            Oron-la-Ville, Vaud
-          </div>
-        </aside>
+      <div>
 
         <div class="content-body">
 
           <h2>Qu'est-ce que la <em>gemmothérapie</em> ?</h2>
           <p>La gemmothérapie est une branche de la phytothérapie qui utilise l'énergie des bourgeons et jeunes pousses de plantes. Ces tissus embryonnaires en pleine croissance concentrent une quantité maximale de principes actifs : hormones végétales, vitamines, oligo-éléments, enzymes.</p>
           <p>Récoltés au printemps avant l'éclosion, ils sont macérés dans un mélange de glycérine végétale, d'alcool et d'eau pour préserver toute leur vitalité. On obtient ainsi un macérat glycériné, utilisé en gouttes par voie orale, en cures.</p>
+
+          <div class="price-strip">
+            <div class="price-strip-item">
+              <strong>Consultation ~30 min</strong>
+              <span class="price">CHF 60</span><br>flacon 30ml inclus
+            </div>
+            <div class="price-strip-item">
+              <strong>Flacon seul</strong>
+              <span class="price">CHF 30</span><br>en complément d'une séance
+            </div>
+            <div class="price-strip-item">
+              <strong>Posologie adulte</strong>
+              5 à 20 gouttes par jour
+            </div>
+            <div class="price-strip-item">
+              <strong>Posologie enfants</strong>
+              1 goutte par année d'âge
+            </div>
+            <div class="price-strip-item">
+              <strong>Durée d'une cure</strong>
+              21 jours, pause 7 jours
+            </div>
+            <div class="price-strip-item">
+              <strong>Cabinet</strong>
+              Oron-la-Ville, Vaud
+            </div>
+          </div>
 
           <div class="divider"></div>
 

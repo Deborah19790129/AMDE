@@ -63,13 +63,32 @@
     .page-sub { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 52ch; margin-top: 1.5rem; }
 
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
-    .content-grid { display: grid; grid-template-columns: 280px 1fr; gap: clamp(4rem, 8vw, 8rem); align-items: start; }
-    .content-aside { position: sticky; top: 6rem; }
-    .aside-label { margin-bottom: 1.25rem; }
-    .aside-tag { font-size: .82rem; color: var(--mid); padding: .9rem 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
-    .aside-tag:first-of-type { border-top: 1px solid var(--line); }
-    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
-    .aside-tag .price { color: var(--bronze); font-family: var(--serif); font-size: 1.1rem; }
+
+    /* Price strip */
+    .price-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-block: 1.5rem 2.5rem;
+    }
+    .price-strip-item {
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+      font-size: .82rem; color: var(--mid);
+      line-height: 1.5;
+    }
+    .price-strip-item:last-child { border-right: none; }
+    .price-strip-item strong {
+      display: block; font-weight: 500; font-size: .68rem;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: .2rem;
+    }
+    .price-strip-item .price {
+      color: var(--bronze); font-family: var(--serif); font-size: 1.1rem;
+    }
 
     .content-body h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 400; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 1rem; color: var(--ink); }
     .content-body h2 em { font-style: italic; color: var(--accent); }
@@ -111,7 +130,12 @@
     .footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .footer-copy { font-size: .72rem; color: var(--faint); }
 
-    @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } .content-aside { position: static; } .cta-inner { flex-direction: column; align-items: flex-start; } .prop-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .cta-inner { flex-direction: column; align-items: flex-start; } .prop-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .price-strip { grid-template-columns: 1fr; }
+      .price-strip-item { border-right: none; border-bottom: 1px solid var(--line); }
+      .price-strip-item:last-child { border-bottom: none; }
+    }
         @media (max-width: 640px) {
       .nav-links { display: none; }
       .nav-burger { display: flex; touch-action: manipulation; }
@@ -201,31 +225,7 @@
 
   <section class="content">
     <div class="wrap">
-      <div class="content-grid">
-
-        <aside class="content-aside">
-          <div class="lbl aside-label">Informations pratiques</div>
-          <div class="aside-tag">
-            <strong>Consultation</strong>
-            environ 30 min<br>
-            <span class="price">CHF 60</span>
-            <span style="font-size:.8rem;opacity:.7;display:block">(flacon inclus)</span>
-          </div>
-          <div class="aside-tag">
-            <strong>Forfait combiné</strong>
-            Réflexologie + HE<br>
-            <span class="price">CHF 130</span>
-          </div>
-          <div class="aside-tag">
-            <strong>Flacon HE 10ml</strong>
-            <span class="price">CHF 25</span>
-          </div>
-          <div class="aside-tag" style="border-bottom:none">
-            <strong>Cabinet</strong>
-            Espace IN VIVO, Oron-la-Ville<br>
-            <span style="font-size:.8rem;opacity:.7">+ consultations à domicile</span>
-          </div>
-        </aside>
+      <div>
 
         <div class="content-body">
 
@@ -233,6 +233,26 @@
           <h2>Qu'est-ce que l'<em>aromathérapie ?</em></h2>
           <p>C'est une forme de médecine alternative qui utilise les huiles essentielles extraites de plantes pour améliorer le bien-être physique, émotionnel et mental. Les huiles essentielles sont des substances volatiles et aromatiques produites par les plantes, généralement par distillation à la vapeur d'eau.</p>
           <p>L'utilisation des huiles essentielles à des fins thérapeutiques remonte à l'Antiquité, où elles étaient utilisées pour leurs propriétés médicinales. Aujourd'hui, l'aromathérapie est largement pratiquée dans le monde entier et peut être utilisée de différentes manières.</p>
+
+          <div class="price-strip">
+            <div class="price-strip-item">
+              <strong>Consultation</strong>
+              environ 30 min<br><span class="price">CHF 60</span>
+              <span style="font-size:.8rem;opacity:.7;display:block">(flacon inclus)</span>
+            </div>
+            <div class="price-strip-item">
+              <strong>Forfait combiné</strong>
+              Réflexologie + HE<br><span class="price">CHF 130</span>
+            </div>
+            <div class="price-strip-item">
+              <strong>Flacon HE 10ml</strong>
+              <span class="price">CHF 25</span>
+            </div>
+            <div class="price-strip-item">
+              <strong>Cabinet</strong>
+              Espace IN VIVO, Oron-la-Ville<br><span style="font-size:.8rem;opacity:.7">+ consultations à domicile</span>
+            </div>
+          </div>
 
           <div class="divider"></div>
 
