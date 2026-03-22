@@ -565,7 +565,21 @@
     .contact-hl em { font-style: italic; color: rgba(255,255,255,.45); }
     .contact-body {
       font-size: .88rem; color: rgba(255,255,255,.35);
-      line-height: 1.8; max-width: 40ch; margin-bottom: 2.5rem;
+      line-height: 1.8; max-width: 40ch; margin-bottom: 1.5rem;
+    }
+    .onedoc-btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .8rem; font-weight: 500; letter-spacing: .04em;
+      color: var(--accent);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: .65em 1.2em;
+      border-radius: 100px;
+      transition: background .2s, border-color .2s;
+      margin-bottom: 2rem;
+    }
+    .onedoc-btn:hover {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.3);
     }
     .contact-info { display: flex; flex-direction: column; gap: 1.1rem; }
     .contact-row { display: flex; align-items: baseline; gap: 1rem; }
@@ -721,7 +735,7 @@
 <body>
 
   <!-- FAB -->
-  <a href="#contact" class="fab" id="fab">
+  <a href="https://www.onedoc.ch/fr/reflexologue/oron/pcs5v/deborah-menoud-bieri" target="_blank" rel="noopener" class="fab" id="fab">
     <span class="fab-pulse"></span>
     Réserver
   </a>
@@ -939,6 +953,10 @@
           <span class="contact-lbl">Rendez-vous</span>
           <h2 class="contact-hl">Déborah<br><em>Menoud Bieri</em></h2>
           <p class="contact-body">Certifiée ASCA · Sur rendez-vous</p>
+          <a href="https://www.onedoc.ch/fr/reflexologue/oron/pcs5v/deborah-menoud-bieri" target="_blank" rel="noopener" class="onedoc-btn">
+            Réserver en ligne via OneDoc
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
         </div>
 
         <div class="contact-simple-right">
