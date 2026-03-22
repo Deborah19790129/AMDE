@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drainage lymphatique — Aux Merveilles des Essences · Oron</title>
-  <meta name="description" content="Drainage lymphatique manuel — soin doux pour la circulation et l'élimination. Cabinet à Oron, Vaud." />
+  <meta name="description" content="Drainage lymphatique par voie réflexe — soin doux pour la circulation et l'élimination. Cabinet à Oron, Vaud." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -24,23 +24,38 @@
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     .wrap { max-width: 1280px; margin-inline: auto; padding-inline: clamp(1.5rem,5vw,4rem); }
     .lbl { font-size: .65rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); }
-    .nav {
-      position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 90;
-      padding-block: 1.2rem;
-      background: rgba(255,255,255,.92); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--line); transition: box-shadow .3s var(--ease);
-    }
+
+    /* Nav */
+    .nav { position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 90; padding-block: 1.2rem; background: rgba(255,255,255,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); transition: box-shadow .3s var(--ease); }
     .nav.stuck { box-shadow: 0 2px 24px rgba(28,28,26,.06); }
     .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
     .nav-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink); white-space: nowrap; }
     .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
-    .nav-links a { font-size: .75rem; color: var(--mid); transition: color .2s; white-space: nowrap; }
+    .nav-links a { font-size: .75rem; color: var(--mid); transition: color .2s; white-space: nowrap; position: relative; }
     .nav-links a:hover { color: var(--ink); }
-    .nav-links a.active { color: var(--accent); }
     .nav-cta { font-size: .72rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: 100px; padding: .6em 1.4em; transition: background .2s; }
     .nav-cta:hover { background: #1e4a35; }
     .nav-burger { display: none; flex-direction: column; gap: 5px; padding: .3rem; }
     .nav-burger span { display: block; width: 20px; height: 1.5px; background: var(--ink); border-radius: 2px; }
+
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger { display: flex; align-items: center; gap: .35rem; font-size: .75rem; font-weight: 400; color: var(--mid); letter-spacing: .01em; cursor: pointer; white-space: nowrap; transition: color .2s; background: none; border: none; padding: 0; font-family: var(--sans); }
+    .nav-dropdown-trigger:hover { color: var(--ink); }
+    .nav-dropdown-trigger svg { transition: transform .25s var(--ease); flex-shrink: 0; }
+    .nav-dropdown.open .nav-dropdown-trigger svg { transform: rotate(180deg); }
+    .nav-dropdown.open .nav-dropdown-trigger { color: var(--ink); }
+    .nav-dropdown-panel { position: absolute; top: calc(100% + 1.4rem); left: 50%; transform: translateX(-50%) translateY(-6px); width: 300px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 40px rgba(28,28,26,.10), 0 2px 8px rgba(28,28,26,.06); padding: .5rem; opacity: 0; pointer-events: none; transition: opacity .22s var(--ease), transform .22s var(--ease); z-index: 100; }
+    .nav-dropdown.open .nav-dropdown-panel { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .dropdown-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; border-radius: 8px; transition: background .15s; text-decoration: none; }
+    .dropdown-item:hover { background: var(--surface); }
+    .dropdown-item-name { font-family: Georgia, 'Times New Roman', serif; font-size: .92rem; color: var(--ink); display: block; letter-spacing: .01em; transition: color .15s; }
+    .dropdown-item:hover .dropdown-item-name { color: var(--accent); }
+    .dropdown-item.current .dropdown-item-name { color: var(--accent); }
+    .dropdown-item-arrow { color: var(--faint); opacity: 0; transition: opacity .15s, transform .2s var(--ease); flex-shrink: 0; }
+    .dropdown-item:hover .dropdown-item-arrow { opacity: 1; transform: translateX(3px); }
+
+    /* Page header */
     .page-header { padding-block: clamp(8rem, 14vh, 11rem) clamp(4rem, 6vh, 6rem); border-bottom: 1px solid var(--line); }
     .page-header .back { display: inline-flex; align-items: center; gap: .5rem; font-size: .72rem; color: var(--mid); margin-bottom: 2rem; transition: color .2s; }
     .page-header .back:hover { color: var(--accent); }
@@ -49,32 +64,56 @@
     .page-hl { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); font-weight: 400; line-height: .96; letter-spacing: -.03em; }
     .page-hl em { font-style: italic; color: var(--accent); }
     .page-sub { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 52ch; margin-top: 1.5rem; }
+
+    /* Content */
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
-    .content-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(4rem, 8vw, 8rem); align-items: start; }
-    .aside-label { margin-bottom: 1.5rem; }
-    .aside-tags { display: flex; flex-direction: column; gap: .6rem; }
-    .aside-tag { font-size: .78rem; color: var(--mid); padding: .75rem 0; border-bottom: 1px solid var(--line); }
-    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .72rem; letter-spacing: .04em; }
-    .content-body h2 { font-family: var(--serif); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 400; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 1.25rem; color: var(--ink); }
+    .content-grid { display: grid; grid-template-columns: 280px 1fr; gap: clamp(4rem, 8vw, 8rem); align-items: start; }
+    .content-aside { position: sticky; top: 6rem; }
+    .aside-label { margin-bottom: 1.25rem; }
+    .aside-tag { font-size: .82rem; color: var(--mid); padding: .9rem 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
+    .aside-tag:first-of-type { border-top: 1px solid var(--line); }
+    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
+    .aside-tag .price { color: var(--bronze); font-family: var(--serif); font-size: 1.1rem; }
+
+    /* Body */
+    .content-body h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 400; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 1rem; color: var(--ink); }
     .content-body h2 em { font-style: italic; color: var(--accent); }
-    .content-body p { font-size: .95rem; color: var(--mid); line-height: 1.85; margin-bottom: 1.25rem; max-width: 60ch; }
-    .content-body .divider { height: 1px; background: var(--line); margin-block: 2.5rem; }
+    .content-body p { font-size: .93rem; color: var(--mid); line-height: 1.85; margin-bottom: 1.1rem; max-width: 64ch; }
+    .divider { height: 1px; background: var(--line); margin-block: 2.5rem; }
+
+    .step-list { margin-block: .75rem 1.25rem; display: flex; flex-direction: column; gap: .45rem; }
+    .step { font-size: .88rem; color: var(--mid); padding-left: 1.2rem; position: relative; line-height: 1.6; }
+    .step::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .75rem; }
+
+    .benefit-list { display: flex; flex-direction: column; gap: .5rem; margin-block: .75rem 1.25rem; }
+    .benefit { font-size: .9rem; color: var(--mid); padding-left: 1.2rem; position: relative; line-height: 1.65; }
+    .benefit::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+    .for-who-list { display: flex; flex-direction: column; gap: .5rem; margin-block: .75rem 1.25rem; }
+    .for-who-item { font-size: .9rem; color: var(--mid); padding-left: 1.2rem; position: relative; line-height: 1.65; }
+    .for-who-item::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+    .info-box { background: var(--surface); border-left: 2px solid var(--accent); padding: 1.4rem 1.6rem; border-radius: 0 8px 8px 0; margin-block: 1.25rem; }
+    .info-box p { margin-bottom: 0; font-size: .9rem; }
+
+    .warning-box { background: #fdf8f3; border: 1px solid rgba(138,94,50,.15); padding: 1.4rem 1.6rem; border-radius: 8px; margin-block: 1.25rem; }
+    .warning-box p { margin-bottom: 0; font-size: .9rem; color: var(--mid); }
+
+    /* CTA */
     .cta-strip { background: var(--surface); border-block: 1px solid var(--line); padding-block: clamp(3.5rem, 6vw, 5rem); }
     .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .cta-text h3 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 400; letter-spacing: -.02em; }
     .cta-text p { font-size: .88rem; color: var(--mid); margin-top: .5rem; }
     .btn-dark { display: inline-flex; align-items: center; gap: .6rem; font-size: .78rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: 100px; padding: 1em 2.2em; transition: background .2s, transform .15s var(--ease); white-space: nowrap; }
     .btn-dark:hover { background: #1e4a35; transform: translateY(-2px); }
+
+    /* Footer */
     .footer { padding-block: 2rem; border-top: 1px solid var(--line); }
     .footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .footer-copy { font-size: .72rem; color: var(--faint); }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-burger { display: flex; }
-      .content-grid { grid-template-columns: 1fr; }
-      .cta-inner { flex-direction: column; align-items: flex-start; }
-    }
-    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89; }
+
+    @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } .content-aside { position: static; } .cta-inner { flex-direction: column; align-items: flex-start; } }
+    @media (max-width: 640px) { .nav-links { display: none; } .nav-burger { display: flex; } .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89; } }
   </style>
 </head>
 <body>
@@ -83,11 +122,35 @@
     <div class="wrap">
       <a href="index.html" class="nav-logo">Aux Merveilles des Essences</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="reflexologie.html">Réflexologie</a></li>
-        <li><a href="drainage.html" class="active">Drainage lymphatique</a></li>
-        <li><a href="aromatherapie.html">Aromathérapie</a></li>
-        <li><a href="gemmotherapie.html">Gemmothérapie</a></li>
-        <li><a href="fleurs-de-bach.html">Fleurs de Bach</a></li>
+        <li class="nav-dropdown" id="soinsDropdown">
+          <button class="nav-dropdown-trigger" id="soinsBtn" aria-haspopup="true" aria-expanded="false">
+            Soins
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown-panel" role="menu">
+            <a href="reflexologie.html" class="dropdown-item">
+              <span class="dropdown-item-name">Réflexologie</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="drainage.html" class="dropdown-item current">
+              <span class="dropdown-item-name">Drainage lymphatique</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="aromatherapie.html" class="dropdown-item">
+              <span class="dropdown-item-name">Aromathérapie</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="gemmotherapie.html" class="dropdown-item">
+              <span class="dropdown-item-name">Gemmothérapie</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="fleurs-de-bach.html" class="dropdown-item">
+              <span class="dropdown-item-name">Fleurs de Bach</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </li>
+        <li><a href="index.html#praticienne">Qui suis-je</a></li>
         <li><a href="index.html#contact" class="nav-cta-wrap"><span class="nav-cta">Me contacter</span></a></li>
       </ul>
       <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -102,43 +165,83 @@
       </a>
       <div class="lbl" style="margin-bottom:1rem">Soin</div>
       <h1 class="page-hl">Drainage <em>lymphatique</em></h1>
-      <p class="page-sub">Un massage doux et rythmé qui accompagne le système lymphatique dans son travail d'élimination et de défense.</p>
+      <p class="page-sub">Une méthode douce et naturelle qui utilise la réflexologie pour stimuler le système lymphatique et soutenir les défenses naturelles du corps.</p>
     </div>
   </header>
 
   <section class="content">
     <div class="wrap">
       <div class="content-grid">
+
         <aside class="content-aside">
           <div class="lbl aside-label">Informations pratiques</div>
-          <div class="aside-tags">
-            <div class="aside-tag"><strong>Durée</strong>environ 1h</div>
-            <div class="aside-tag"><strong>Tarif</strong>CHF 100</div>
-            <div class="aside-tag"><strong>Technique</strong>Drainage par voie réflexe (pieds · visage)</div>
-            <div class="aside-tag"><strong>Indications</strong>Jambes lourdes, œdèmes, fatigue, immunité</div>
-            <div class="aside-tag"><strong>Contre-indications</strong>À discuter lors de la prise de contact</div>
+          <div class="aside-tag">
+            <strong>Durée</strong>
+            environ 1h<br>
+            <span class="price">CHF 100</span>
+          </div>
+          <div class="aside-tag">
+            <strong>Technique</strong>
+            Par voie réflexe — pieds<br>
+            <span style="font-size:.8rem;opacity:.7">+ drainage du visage selon besoins</span>
+          </div>
+          <div class="aside-tag">
+            <strong>Indications</strong>
+            Jambes lourdes · œdèmes<br>fatigue · immunité
+          </div>
+          <div class="aside-tag" style="border-bottom:none">
+            <strong>Cabinet</strong>
+            Espace IN VIVO, Oron-la-Ville<br>
+            <span style="font-size:.8rem;opacity:.7">+ consultations à domicile</span>
           </div>
         </aside>
+
         <div class="content-body">
-          <h2>Déroulement <em>de la séance — 1h</em></h2>
-          <p>La séance commence par un échange pour mieux comprendre vos attentes, vos besoins et votre état de santé général.</p>
+
+          <!-- Description -->
+          <h2>Qu'est-ce que le drainage <em>lymphatique par voie réflexe ?</em></h2>
+          <p>Le drainage lymphatique par voie réflexe est une méthode douce et naturelle qui utilise la réflexologie pour stimuler le système lymphatique. Grâce à des pressions précises sur les zones réflexes des pieds, des mains ou du visage, ce soin favorise l'élimination des toxines et soutient la circulation de la lymphe dans tout le corps.</p>
+
+          <p>Par des stimulations ciblées, on agit indirectement sur le système lymphatique afin de :</p>
+          <div class="benefit-list">
+            <div class="benefit">Favoriser l'élimination des toxines et des déchets cellulaires</div>
+            <div class="benefit">Stimuler le système immunitaire</div>
+            <div class="benefit">Réduire les inflammations et les congestions</div>
+            <div class="benefit">Améliorer la circulation et la sensation de jambes lourdes</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Déroulement -->
+          <h2>Déroulement <em>de la séance</em></h2>
+          <p>Le drainage lymphatique par voie réflexe est une technique douce qui s'effectue principalement sur les pieds, par stimulation des zones réflexes liées au système lymphatique. Il est également possible d'y associer un drainage du visage, pour favoriser la détente, la circulation et la sensation de légèreté.</p>
+          <p>La séance peut donc se dérouler uniquement sur les pieds, ou en combinaison pieds et visage, selon l'objectif recherché.</p>
           <div class="step-list">
             <div class="step">Accueil et discussion sur vos besoins</div>
-            <div class="step">Séance de drainage lymphatique par voie réflexe — travail sur les pieds, avec possibilité de commencer par un drainage du visage selon les besoins</div>
+            <div class="step">Séance de drainage par voie réflexe — pieds, avec possibilité d'y associer un drainage du visage</div>
             <div class="step">Conseils personnalisés pour prolonger les bienfaits à domicile</div>
           </div>
-          <p class="price-line">Tarif <strong>CHF 100</strong></p>
 
           <div class="divider"></div>
 
-          <h2>Le rôle du système <em>lymphatique</em></h2>
-          <p>La lymphe est un liquide qui circule dans tout le corps et transporte les déchets cellulaires, les toxines et les cellules immunitaires. Contrairement au sang, elle n'a pas de pompe — elle dépend du mouvement musculaire et de la respiration pour avancer.</p>
-          <p>Quand cette circulation ralentit, on peut ressentir des jambes lourdes, des gonflements, une fatigue diffuse ou une sensibilité aux infections.</p>
+          <!-- Pour qui -->
+          <h2>Pour <em>qui ?</em></h2>
+          <div class="for-who-list">
+            <div class="for-who-item">Lors de changements hormonaux</div>
+            <div class="for-who-item">Après une maladie ou une période de fatigue</div>
+            <div class="for-who-item">En cas de troubles circulatoires</div>
+            <div class="for-who-item">Pour soutenir son système immunitaire</div>
+            <div class="for-who-item">Simplement pour prendre soin de soi en douceur</div>
+          </div>
 
           <div class="divider"></div>
 
-          <h2>Pour qui ?</h2>
-          <p>Pour toute personne qui se sent gonflée, lourde, ou dont la récupération est lente. Aussi très indiqué en accompagnement post-opératoire ou en soutien pendant des traitements médicaux, toujours en accord avec le médecin traitant.</p>
+          <!-- Contre-indications -->
+          <h2><em>Contre-indications</em></h2>
+          <div class="warning-box">
+            <p>Le drainage lymphatique par voie réflexe respecte les mêmes grandes contre-indications que la réflexologie plantaire classique. C'est une approche douce, qui s'adapte à chaque personne. En cas de pathologie particulière, de traitement médical lourd ou de doute, un avis médical préalable est recommandé.</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -167,6 +270,16 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40), { passive: true });
     document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+
+    const soinsDropdown = document.getElementById('soinsDropdown');
+    const soinsBtn = document.getElementById('soinsBtn');
+    let closeTimer;
+    function openDropdown() { clearTimeout(closeTimer); soinsDropdown.classList.add('open'); soinsBtn.setAttribute('aria-expanded', 'true'); }
+    function closeDropdown() { closeTimer = setTimeout(() => { soinsDropdown.classList.remove('open'); soinsBtn.setAttribute('aria-expanded', 'false'); }, 120); }
+    soinsDropdown.addEventListener('mouseenter', openDropdown);
+    soinsDropdown.addEventListener('mouseleave', closeDropdown);
+    soinsBtn.addEventListener('click', () => soinsDropdown.classList.contains('open') ? closeDropdown() : openDropdown());
+    document.addEventListener('click', e => { if (!soinsDropdown.contains(e.target)) closeDropdown(); });
   </script>
 </body>
 </html>

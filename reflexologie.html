@@ -30,6 +30,7 @@
       position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 90;
       padding-block: 1.2rem;
       background: rgba(255,255,255,.92); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--line);
       transition: box-shadow .3s var(--ease);
     }
@@ -39,7 +40,6 @@
     .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
     .nav-links a { font-size: .75rem; color: var(--mid); transition: color .2s; white-space: nowrap; position: relative; }
     .nav-links a:hover { color: var(--ink); }
-    .nav-links a.active { color: var(--accent); }
     .nav-cta {
       font-size: .72rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
       color: #fff; background: var(--accent); border-radius: 100px; padding: .6em 1.4em;
@@ -49,6 +49,47 @@
     .nav-burger { display: none; flex-direction: column; gap: 5px; padding: .3rem; }
     .nav-burger span { display: block; width: 20px; height: 1.5px; background: var(--ink); border-radius: 2px; }
 
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 400; color: var(--mid);
+      letter-spacing: .01em; cursor: pointer; white-space: nowrap;
+      transition: color .2s; background: none; border: none; padding: 0;
+      font-family: var(--sans);
+    }
+    .nav-dropdown-trigger:hover { color: var(--ink); }
+    .nav-dropdown-trigger svg { transition: transform .25s var(--ease); flex-shrink: 0; }
+    .nav-dropdown.open .nav-dropdown-trigger svg { transform: rotate(180deg); }
+    .nav-dropdown.open .nav-dropdown-trigger { color: var(--ink); }
+    .nav-dropdown-panel {
+      position: absolute; top: calc(100% + 1.4rem); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      width: 300px; background: #fff;
+      border: 1px solid var(--line); border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(28,28,26,.10), 0 2px 8px rgba(28,28,26,.06);
+      padding: .5rem; opacity: 0; pointer-events: none;
+      transition: opacity .22s var(--ease), transform .22s var(--ease); z-index: 100;
+    }
+    .nav-dropdown.open .nav-dropdown-panel { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .dropdown-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: .75rem 1rem; border-radius: 8px; transition: background .15s; text-decoration: none;
+    }
+    .dropdown-item:hover { background: var(--surface); }
+    .dropdown-item-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: .92rem; color: var(--ink); display: block; letter-spacing: .01em;
+      transition: color .15s;
+    }
+    .dropdown-item:hover .dropdown-item-name { color: var(--accent); }
+    .dropdown-item-arrow {
+      color: var(--faint); opacity: 0;
+      transition: opacity .15s, transform .2s var(--ease); flex-shrink: 0;
+    }
+    .dropdown-item:hover .dropdown-item-arrow { opacity: 1; transform: translateX(3px); }
+    .dropdown-item.current .dropdown-item-name { color: var(--accent); }
+
     /* Page header */
     .page-header {
       padding-block: clamp(8rem, 14vh, 11rem) clamp(4rem, 6vh, 6rem);
@@ -56,100 +97,157 @@
     }
     .page-header .back {
       display: inline-flex; align-items: center; gap: .5rem;
-      font-size: .72rem; color: var(--mid); margin-bottom: 2rem;
-      transition: color .2s;
+      font-size: .72rem; color: var(--mid); margin-bottom: 2rem; transition: color .2s;
     }
     .page-header .back:hover { color: var(--accent); }
-    .page-header .back svg { transition: transform .2s var(--ease); }
     .page-header .back:hover svg { transform: translateX(-3px); }
+    .page-header .back svg { transition: transform .2s var(--ease); }
     .page-hl {
       font-family: var(--serif);
       font-size: clamp(3rem, 6vw, 6rem);
       font-weight: 400; line-height: .96; letter-spacing: -.03em;
     }
     .page-hl em { font-style: italic; color: var(--accent); }
-    .page-sub {
-      font-size: 1.05rem; color: var(--mid); line-height: 1.8;
-      max-width: 52ch; margin-top: 1.5rem;
-    }
+    .page-sub { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 52ch; margin-top: 1.5rem; }
 
-    /* Content */
+    /* Content layout */
     .content { padding-block: clamp(4rem, 7vw, 7rem); }
     .content-grid {
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
+      grid-template-columns: 280px 1fr;
       gap: clamp(4rem, 8vw, 8rem);
       align-items: start;
     }
-    .content-aside {}
-    .aside-label { margin-bottom: 1.5rem; }
-    .aside-tags { display: flex; flex-direction: column; gap: .6rem; }
-    .aside-tag {
-      font-size: .78rem; color: var(--mid); padding: .75rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .72rem; letter-spacing: .04em; }
 
+    /* Sticky sidebar */
+    .content-aside {
+      position: sticky;
+      top: 6rem;
+    }
+    .aside-label { margin-bottom: 1.25rem; }
+    .aside-tag {
+      font-size: .82rem; color: var(--mid); padding: .9rem 0;
+      border-bottom: 1px solid var(--line); line-height: 1.5;
+    }
+    .aside-tag:first-of-type { border-top: 1px solid var(--line); }
+    .aside-tag strong { color: var(--ink); display: block; font-weight: 500; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
+    .aside-tag .price { color: var(--bronze); font-family: var(--serif); font-size: 1.1rem; }
+
+    /* Body typography */
     .content-body h2 {
       font-family: var(--serif);
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
       font-weight: 400; line-height: 1.15; letter-spacing: -.02em;
-      margin-bottom: 1.25rem; color: var(--ink);
+      margin-bottom: 1rem; color: var(--ink);
     }
     .content-body h2 em { font-style: italic; color: var(--accent); }
-    .content-body p {
-      font-size: .95rem; color: var(--mid); line-height: 1.85;
-      margin-bottom: 1.25rem; max-width: 60ch;
+    .content-body h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+      font-weight: 400; line-height: 1.2; letter-spacing: -.015em;
+      color: var(--ink); margin-bottom: .75rem;
     }
-    .content-body .divider { height: 1px; background: var(--line); margin-block: 2.5rem; }
+    .content-body p {
+      font-size: .93rem; color: var(--mid); line-height: 1.85;
+      margin-bottom: 1.1rem; max-width: 64ch;
+    }
+    .divider { height: 1px; background: var(--line); margin-block: 2.5rem; }
+
+    /* Step list (déroulement) */
+    .step-list { margin-block: .75rem 1.25rem; display: flex; flex-direction: column; gap: .45rem; }
+    .step {
+      font-size: .88rem; color: var(--mid); padding-left: 1.2rem;
+      position: relative; line-height: 1.6;
+    }
+    .step::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .75rem; }
+
+    /* Benefit list */
+    .benefit-list { display: flex; flex-direction: column; gap: .5rem; margin-block: .75rem 1.25rem; }
+    .benefit {
+      font-size: .9rem; color: var(--mid); padding-left: 1.2rem;
+      position: relative; line-height: 1.65;
+    }
+    .benefit::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+    /* Precaution list */
+    .precaution-list { display: flex; flex-direction: column; gap: .45rem; margin-block: .75rem 1.25rem; }
+    .precaution {
+      font-size: .88rem; color: var(--mid); padding-left: 1.2rem;
+      position: relative; line-height: 1.6;
+    }
+    .precaution::before { content: '·'; position: absolute; left: 0; color: var(--faint); font-size: 1.2rem; top: -.1rem; }
+
+    /* Contre-indication list */
+    .ci-list { display: flex; flex-direction: column; gap: .9rem; margin-block: .75rem 1.25rem; }
+    .ci-item { font-size: .88rem; color: var(--mid); line-height: 1.65; padding-left: 1.2rem; position: relative; }
+    .ci-item::before { content: '–'; position: absolute; left: 0; color: var(--ink); }
+    .ci-item strong { color: var(--ink); font-weight: 500; }
+
+    /* Reaction list */
+    .reaction-list { display: flex; flex-direction: column; gap: 1.1rem; margin-block: .75rem 1.25rem; }
+    .reaction-item { font-size: .88rem; color: var(--mid); line-height: 1.65; padding-left: 1.2rem; position: relative; }
+    .reaction-item::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+    .reaction-item strong { color: var(--ink); font-weight: 500; }
+
+    /* Info box */
+    .info-box {
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      padding: 1.4rem 1.6rem;
+      border-radius: 0 8px 8px 0;
+      margin-block: 1.25rem;
+    }
+    .info-box p { margin-bottom: 0; font-size: .9rem; }
+
+    /* Warning box */
+    .warning-box {
+      background: #fdf8f3;
+      border: 1px solid rgba(138,94,50,.15);
+      padding: 1.4rem 1.6rem;
+      border-radius: 8px;
+      margin-block: 1.25rem;
+    }
+    .warning-box p { margin-bottom: 0; font-size: .9rem; }
+
+    /* Price line */
+    .price-line { font-size: .88rem; color: var(--mid); margin-top: .5rem; }
+    .price-line .price { color: var(--bronze); font-family: var(--serif); font-size: 1.15rem; }
 
     /* CTA */
     .cta-strip {
-      background: var(--surface);
-      border-block: 1px solid var(--line);
+      background: var(--surface); border-block: 1px solid var(--line);
       padding-block: clamp(3.5rem, 6vw, 5rem);
     }
-    .cta-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
-    }
-    .cta-text h3 {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
-      font-weight: 400; letter-spacing: -.02em;
-    }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text h3 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 400; letter-spacing: -.02em; }
     .cta-text p { font-size: .88rem; color: var(--mid); margin-top: .5rem; }
     .btn-dark {
       display: inline-flex; align-items: center; gap: .6rem;
       font-size: .78rem; font-weight: 500; letter-spacing: .06em;
       text-transform: uppercase; color: #fff; background: var(--accent);
       border-radius: 100px; padding: 1em 2.2em;
-      transition: background .2s, transform .15s var(--ease);
-      white-space: nowrap;
+      transition: background .2s, transform .15s var(--ease); white-space: nowrap;
     }
     .btn-dark:hover { background: #1e4a35; transform: translateY(-2px); }
 
     /* Footer */
-    .footer {
-      padding-block: 2rem;
-      border-top: 1px solid var(--line);
-    }
+    .footer { padding-block: 2rem; border-top: 1px solid var(--line); }
     .footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .footer-copy { font-size: .72rem; color: var(--faint); }
 
-    /* Responsive */
-    .step-list { margin-block: 1rem 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
-    .step { font-size: .88rem; color: var(--mid); padding-left: 1.2rem; position: relative; line-height: 1.6; }
-    .step::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .75rem; }
-    .price-line { font-size: .85rem; color: var(--mid); }
-    .price-line strong { color: var(--bronze); font-weight: 500; font-family: var(--serif); font-size: 1.1rem; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-burger { display: flex; }
+    @media (max-width: 900px) {
       .content-grid { grid-template-columns: 1fr; }
+      .content-aside { position: static; }
       .cta-inner { flex-direction: column; align-items: flex-start; }
     }
-    .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: fixed;
+        inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89;
+      }
+    }
   </style>
 </head>
 <body>
@@ -158,16 +256,38 @@
     <div class="wrap">
       <a href="index.html" class="nav-logo">Aux Merveilles des Essences</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="reflexologie.html" class="active">Réflexologie</a></li>
-        <li><a href="drainage.html">Drainage lymphatique</a></li>
-        <li><a href="aromatherapie.html">Aromathérapie</a></li>
-        <li><a href="gemmotherapie.html">Gemmothérapie</a></li>
-        <li><a href="fleurs-de-bach.html">Fleurs de Bach</a></li>
+        <li class="nav-dropdown" id="soinsDropdown">
+          <button class="nav-dropdown-trigger" id="soinsBtn" aria-haspopup="true" aria-expanded="false">
+            Soins
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown-panel" id="soinsPanel" role="menu">
+            <a href="reflexologie.html" class="dropdown-item current">
+              <span class="dropdown-item-name">Réflexologie</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="drainage.html" class="dropdown-item">
+              <span class="dropdown-item-name">Drainage lymphatique</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="aromatherapie.html" class="dropdown-item">
+              <span class="dropdown-item-name">Aromathérapie</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="gemmotherapie.html" class="dropdown-item">
+              <span class="dropdown-item-name">Gemmothérapie</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="fleurs-de-bach.html" class="dropdown-item">
+              <span class="dropdown-item-name">Fleurs de Bach</span>
+              <svg class="dropdown-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </li>
+        <li><a href="index.html#praticienne">Qui suis-je</a></li>
         <li><a href="index.html#contact" class="nav-cta-wrap"><span class="nav-cta">Me contacter</span></a></li>
       </ul>
-      <button class="nav-burger" id="burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -179,7 +299,7 @@
       </a>
       <div class="lbl" style="margin-bottom:1rem">Soin</div>
       <h1 class="page-hl">Réflexo<em>logie</em></h1>
-      <p class="page-sub">Une technique manuelle douce qui agit sur l'ensemble du corps à travers des zones précises des pieds, des mains ou du visage.</p>
+      <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
     </div>
   </header>
 
@@ -187,51 +307,128 @@
     <div class="wrap">
       <div class="content-grid">
 
+        <!-- Sidebar sticky -->
         <aside class="content-aside">
           <div class="lbl aside-label">Informations pratiques</div>
-          <div class="aside-tags">
-            <div class="aside-tag"><strong>1ère séance</strong>environ 1h30 — CHF 110</div>
-            <div class="aside-tag"><strong>Séances suivantes</strong>environ 1h — CHF 100</div>
-            <div class="aside-tag"><strong>Forfait combiné</strong>Réflexologie + complément — CHF 130</div>
-            <div class="aside-tag"><strong>Zones travaillées</strong>Pieds · Mains · Visage</div>
-            <div class="aside-tag"><strong>Certifications</strong>ASCA · RME</div>
+          <div class="aside-tag">
+            <strong>1ère séance</strong>
+            environ 1h30<br>
+            <span class="price">CHF 110</span>
+          </div>
+          <div class="aside-tag">
+            <strong>Séances suivantes</strong>
+            environ 1h<br>
+            <span class="price">CHF 100</span>
+          </div>
+          <div class="aside-tag">
+            <strong>Forfait combiné</strong>
+            Réflexologie + complément<br>
+            <span class="price">CHF 130</span>
+          </div>
+          <div class="aside-tag">
+            <strong>Zones travaillées</strong>
+            Pieds · Mains · Visage
+          </div>
+          <div class="aside-tag" style="border-bottom:none">
+            <strong>Cabinet</strong>
+            Espace IN VIVO, Oron-la-Ville<br>
+            <span style="font-size:.8rem;opacity:.7">+ consultations à domicile</span>
           </div>
         </aside>
 
+        <!-- Main content -->
         <div class="content-body">
-          <h2>1ère séance <em>— 1h30</em></h2>
+
+          <!-- Déroulement -->
+          <h2>Déroulement des <em>séances</em></h2>
+          <h3>1ère séance — 1h30</h3>
           <p>La première séance commence par un échange approfondi pour mieux comprendre vos attentes, vos besoins et votre état de santé général. Cela permet de personnaliser le soin pour maximiser ses bienfaits.</p>
           <div class="step-list">
             <div class="step">Accueil et discussion sur vos besoins</div>
             <div class="step">Séance de réflexologie adaptée</div>
             <div class="step">Conseils personnalisés pour prolonger les bienfaits à domicile</div>
           </div>
-          <p class="price-line">Tarif <strong>CHF 110</strong></p>
 
-          <div class="divider"></div>
-
-          <h2>Séances suivantes <em>— 1h</em></h2>
+          <h3>Séances suivantes — 1h</h3>
           <p>Les séances de suivi se concentrent principalement sur le soin, tout en restant flexibles pour ajuster la méthode selon vos ressentis.</p>
           <div class="step-list">
             <div class="step">Bilan rapide sur vos évaluations et ressentis</div>
             <div class="step">Séance de réflexologie ciblée</div>
           </div>
-          <p class="price-line">Tarif <strong>CHF 100</strong></p>
 
           <div class="divider"></div>
 
-          <h2>Forfait <em>combiné</em></h2>
-          <p>Bénéficiez d'une approche complète pour un bien-être global. La séance de réflexologie est accompagnée d'un flacon de Fleurs de Bach, de bourgeons ou d'une synergie d'huiles essentielles — selon vos besoins du moment.</p>
-          <p class="price-line">Tarif <strong>CHF 130</strong></p>
+          <!-- Description -->
+          <h2>Qu'est-ce que la <em>réflexologie ?</em></h2>
+          <p>La réflexologie plantaire est une thérapie manuelle qui considère le corps humain dans son ensemble. Elle part du principe que chaque partie du corps, chaque glande, chaque organe correspond à une zone dite "zone réflexe", que nous retrouvons sur et sous nos pieds. Les pieds sont la représentation miniaturisée du corps humain.</p>
+          <p>Lors d'une séance, j'utilise mes pouces, mes doigts ou des outils spécifiques pour exercer une pression ciblée sur ces zones réflexes. Cette pression stimule les terminaisons nerveuses, ce qui envoie des signaux au système nerveux central. En réponse, le corps déclenche des réactions favorisant la relaxation, la circulation sanguine et lymphatique, ainsi que l'élimination des toxines.</p>
+          <p>Tout le monde peut profiter de la réflexologie, du bébé à la personne âgée. Elle est souvent utilisée comme complément aux traitements médicaux conventionnels pour soulager le stress, les tensions musculaires, les douleurs chroniques et divers troubles, tout en favorisant un état de bien-être global.</p>
 
           <div class="divider"></div>
 
-          <h2>Les trois <em>variantes</em></h2>
-          <p><strong style="color:var(--ink)">Plantaire</strong> — la plus connue. On travaille sous les pieds, une surface riche en terminaisons nerveuses.</p>
-          <p><strong style="color:var(--ink)">Palmaire</strong> — sur les mains, utile quand les pieds ne sont pas accessibles.</p>
-          <p><strong style="color:var(--ink)">Faciale</strong> — plus fine, elle agit sur les tensions cranio-faciales et sinus.</p>
+          <!-- Bienfaits -->
+          <h2>Propriétés <em>thérapeutiques</em></h2>
+          <p>La réflexologie est utilisée pour ses propriétés thérapeutiques :</p>
+          <div class="benefit-list">
+            <div class="benefit">Relaxation, bien-être, réduction du stress et de l'anxiété, amélioration de la qualité du sommeil</div>
+            <div class="benefit">Soulagement de la douleur, amélioration de la mobilité articulaire</div>
+            <div class="benefit">Stimulation du système lymphatique</div>
+            <div class="benefit">Renforcement du système immunitaire</div>
+            <div class="benefit">Équilibre énergétique, élimination des blocages énergétiques</div>
+            <div class="benefit">Harmonisation du corps et de l'esprit</div>
+            <div class="benefit">Activation des mécanismes d'auto-guérison du corps et accélération du processus de guérison</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Précautions -->
+          <h2><em>Précautions</em> particulières</h2>
+          <p>Face à certaines pathologies, le soin sera adapté — certaines zones réflexes seront stimulées en douceur, d'autres évitées, la pression sera mesurée pour :</p>
+          <div class="precaution-list">
+            <div class="precaution">Les personnes épileptiques</div>
+            <div class="precaution">Les personnes diabétiques</div>
+            <div class="precaution">Les personnes atteintes de tuberculose, HIV</div>
+            <div class="precaution">Les personnes atteintes de tumeurs</div>
+            <div class="precaution">Les femmes enceintes</div>
+            <div class="precaution">Les personnes sous traitement anti-coagulation ou hémophiles</div>
+          </div>
+
+          <!-- Contre-indications -->
+          <div class="warning-box">
+            <p><strong style="color:var(--ink);display:block;margin-bottom:.75rem;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase">Contre-indications</strong>La réflexologie ne s'applique pas lors des situations suivantes :</p>
+          </div>
+          <div class="ci-list">
+            <div class="ci-item"><strong>Fièvre élevée et maladie infectieuse</strong> — particulièrement chez les enfants, les personnes âgées ou affaiblies</div>
+            <div class="ci-item"><strong>Tissus localement atteints ou infectés</strong> — eczémas étendus ou mycoses des zones réflexes à traiter, les zones atteintes ne seront pas traitées</div>
+            <div class="ci-item"><strong>Thrombose veineuse / phlébite</strong> — jusqu'à 6 mois après l'événement</div>
+            <div class="ci-item"><strong>Anévrisme connu</strong></div>
+            <div class="ci-item"><strong>Plaies et traumatismes en cours</strong> — fractures, entorses, inflammations, blessures récentes empêchant toute mobilité</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Réactions -->
+          <h2>À quoi s'<em>attendre ?</em></h2>
+          <p>Le but de la réflexologie est d'aider le corps à retrouver l'homéostasie — l'équilibre dans son fonctionnement. Ce retour à l'équilibre n'est pas forcément calme et serein : le corps doit se nettoyer et rejeter les toxines emmagasinées parfois depuis bien longtemps. Cela est tout à fait normal et positif.</p>
+          <div class="reaction-list">
+            <div class="reaction-item"><strong>Relaxation profonde</strong> — beaucoup de gens ressentent une sensation de calme, une diminution du stress et une détente musculaire pendant et après la séance.</div>
+            <div class="reaction-item"><strong>Sensations agréables ou désagréables</strong> — certaines zones réflexes peuvent être plus sensibles que d'autres, ce qui peut provoquer des sensations variées.</div>
+            <div class="reaction-item"><strong>Fatigue</strong> — certaines personnes peuvent ressentir de la fatigue après la séance, surtout si elles étaient très tendues avant. Cela est souvent temporaire, suivi d'une augmentation de l'énergie.</div>
+            <div class="reaction-item"><strong>Élimination des toxines</strong> — la réflexologie peut stimuler la circulation, ce qui aide à éliminer les toxines. Certaines personnes peuvent ressentir temporairement des maux de tête, de la fatigue ou des nausées.</div>
+            <div class="reaction-item"><strong>Réactions émotionnelles</strong> — la réflexologie peut parfois libérer des émotions enfouies, entraînant des réactions telles que des pleurs, de la tristesse ou de la joie.</div>
+          </div>
+          <div class="info-box">
+            <p>Il est important de communiquer si vous ressentez des réactions inhabituelles ou inconfortables pendant ou après une séance, afin que je puisse ajuster la pression.</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Nombre de séances -->
+          <h2>Nombre de <em>séances</em></h2>
+          <p>Le nombre de séances est très individuel et varie selon la personne et le traitement convenu. À titre indicatif, 6 à 8 séances seront généralement nécessaires, mais la personne ressentira souvent une amélioration durable vers la 4ème séance.</p>
+          <p>Selon la pathologie, un minimum de 3 séances devrait être réalisé, de manière rapprochée — environ 1 semaine d'écart entre chaque séance — afin d'obtenir un meilleur effet.</p>
+
         </div>
-
       </div>
     </div>
   </section>
@@ -258,9 +455,20 @@
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40), { passive: true });
+
     document.getElementById('burger').addEventListener('click', () => {
       document.getElementById('navLinks').classList.toggle('open');
     });
+
+    const soinsDropdown = document.getElementById('soinsDropdown');
+    const soinsBtn = document.getElementById('soinsBtn');
+    let closeTimer;
+    function openDropdown() { clearTimeout(closeTimer); soinsDropdown.classList.add('open'); soinsBtn.setAttribute('aria-expanded', 'true'); }
+    function closeDropdown() { closeTimer = setTimeout(() => { soinsDropdown.classList.remove('open'); soinsBtn.setAttribute('aria-expanded', 'false'); }, 120); }
+    soinsDropdown.addEventListener('mouseenter', openDropdown);
+    soinsDropdown.addEventListener('mouseleave', closeDropdown);
+    soinsBtn.addEventListener('click', () => soinsDropdown.classList.contains('open') ? closeDropdown() : openDropdown());
+    document.addEventListener('click', e => { if (!soinsDropdown.contains(e.target)) closeDropdown(); });
   </script>
 </body>
 </html>
