@@ -15,7 +15,12 @@
       "Bash(for f:*)",
       "Bash(do)",
       "Bash(sed -i '' '/<li><a href=\"\".*#guide\"\">Guide pratique<\\\\/a><\\\\/li>/d' \"$f\")",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(gh pr:*)",
+      "Bash(sed -i '' 's|<h1 class=\"\"page-hl\"\">Drainage <em>lymphatique<\\\\/em><\\\\/h1>|<h1 class=\"\"page-hl\"\">Drainage lymphatique<\\\\/h1>|' drainage.html)",
+      "Bash(sed -i '' 's|<h1 class=\"\"page-hl\"\">Aroma<em>thérapie<\\\\/em><\\\\/h1>|<h1 class=\"\"page-hl\"\">Aromathérapie<\\\\/h1>|' aromatherapie.html)",
+      "Bash(sed -i '' 's|<h1 class=\"\"page-hl\"\">Gemmo<em>thérapie<\\\\/em><\\\\/h1>|<h1 class=\"\"page-hl\"\">Gemmothérapie<\\\\/h1>|' gemmotherapie.html)",
+      "Bash(sed -i '' 's|<h1 class=\"\"page-hl\"\">Fleurs <em>de Bach<\\\\/em><\\\\/h1>|<h1 class=\"\"page-hl\"\">Fleurs de Bach<\\\\/h1>|' fleurs-de-bach.html)"
     ]
   }
 }
