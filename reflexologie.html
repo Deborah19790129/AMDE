@@ -91,29 +91,21 @@
     .dropdown-item:hover .dropdown-item-arrow { opacity: 1; transform: translateX(3px); }
     .dropdown-item.current .dropdown-item-name { color: var(--accent); }
 
-    /* Page header hero */
+    /* Full-page background image */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('image1.jpeg') center top / cover no-repeat;
+      opacity: .10;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Page header */
     .page-header {
-      position: relative;
+      padding-block: clamp(8rem, 14vh, 11rem) clamp(4rem, 6vh, 6rem);
       border-bottom: 1px solid var(--line);
-    }
-    .page-header-bg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .page-header-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to bottom,
-        rgba(255,255,255,.05) 0%,
-        rgba(255,255,255,.35) 50%,
-        rgba(255,255,255,.92) 80%,
-        rgba(255,255,255,1) 100%);
-    }
-    .page-header-content {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 2;
-      padding-bottom: clamp(3rem, 5vh, 5rem);
-      padding-top: clamp(6rem, 10vh, 8rem);
     }
     .page-header .back {
       display: inline-flex; align-items: center; gap: .5rem;
@@ -345,18 +337,14 @@
   </nav>
 
   <header class="page-header">
-    <img src="image1.jpeg" alt="Réflexologie — soin des pieds" class="page-header-bg" />
-    <div class="page-header-overlay"></div>
-    <div class="page-header-content">
-      <div class="wrap">
-        <a href="index.html" class="back">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-          Retour à l'accueil
-        </a>
-        <div class="lbl" style="margin-bottom:1rem">Soin</div>
-        <h1 class="page-hl">Réflexologie</h1>
-        <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
-      </div>
+    <div class="wrap">
+      <a href="index.html" class="back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Retour à l'accueil
+      </a>
+      <div class="lbl" style="margin-bottom:1rem">Soin</div>
+      <h1 class="page-hl">Réflexologie</h1>
+      <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
     </div>
   </header>
 
