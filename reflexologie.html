@@ -91,35 +91,31 @@
     .dropdown-item:hover .dropdown-item-arrow { opacity: 1; transform: translateX(3px); }
     .dropdown-item.current .dropdown-item-name { color: var(--accent); }
 
-    /* Page header hero — image pleine largeur, hauteur naturelle */
+    /* Page header — 2 colonnes desktop, empilé mobile */
     .page-header {
-      position: relative;
+      padding-block: clamp(7rem, 12vh, 10rem) clamp(3rem, 5vh, 5rem);
       border-bottom: 1px solid var(--line);
+    }
+    .page-header-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 5vw, 6rem);
+      align-items: center;
     }
     .page-header-bg {
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 6px;
     }
-    @media (min-width: 768px) {
-      .page-header-bg {
-        max-height: 72vh;
-        object-fit: cover;
-        object-position: center top;
+    @media (max-width: 767px) {
+      .page-header-inner {
+        grid-template-columns: 1fr;
       }
-    }
-    .page-header-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to bottom,
-        rgba(255,255,255,.08) 0%,
-        rgba(255,255,255,.25) 50%,
-        rgba(255,255,255,.88) 78%,
-        rgba(255,255,255,1)   100%);
-    }
-    .page-header-content {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 2;
-      padding-bottom: clamp(2.5rem, 4vh, 4.5rem);
+      .page-header-bg {
+        order: -1;
+        border-radius: 4px;
+      }
     }
     .page-header .back {
       display: inline-flex; align-items: center; gap: .5rem;
@@ -351,17 +347,18 @@
   </nav>
 
   <header class="page-header">
-    <img src="image1.jpeg" alt="Réflexologie" class="page-header-bg" />
-    <div class="page-header-overlay"></div>
-    <div class="page-header-content">
-      <div class="wrap">
-        <a href="index.html" class="back">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-          Retour à l'accueil
-        </a>
-        <div class="lbl" style="margin-bottom:1rem">Soin</div>
-        <h1 class="page-hl">Réflexologie</h1>
-        <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
+    <div class="wrap">
+      <div class="page-header-inner">
+        <div class="page-header-text">
+          <a href="index.html" class="back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Retour à l'accueil
+          </a>
+          <div class="lbl" style="margin-block:1.5rem 1rem">Soin</div>
+          <h1 class="page-hl">Réflexologie</h1>
+          <p class="page-sub">Une thérapie manuelle douce qui considère le corps dans sa globalité, en travaillant sur des zones réflexes des pieds, des mains ou du visage.</p>
+        </div>
+        <img src="image1.jpeg" alt="Réflexologie" class="page-header-bg" />
       </div>
     </div>
   </header>
