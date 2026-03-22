@@ -413,6 +413,51 @@
       transition: transform .25s var(--ease);
     }
 
+    /* ── Service preview panel ───────────────────────── */
+    .svc-preview-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s var(--ease);
+    }
+    .svc-item:hover .svc-preview-wrap {
+      grid-template-rows: 1fr;
+    }
+    .svc-preview-inner { overflow: hidden; }
+    .svc-preview {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .6rem;
+      padding-block: .75rem 1.1rem;
+      padding-inline: .5rem;
+      border-top: 1px solid var(--line);
+    }
+    .svc-chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: .35rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: .3em 1em;
+      font-size: .72rem;
+      color: var(--mid);
+      white-space: nowrap;
+    }
+    .svc-chip-price {
+      color: var(--bronze);
+      font-family: var(--serif);
+      font-size: .88rem;
+      font-weight: 400;
+    }
+    .svc-chip-sep { opacity: .35; }
+    .svc-preview-note {
+      font-size: .72rem;
+      color: var(--faint);
+      font-style: italic;
+      padding-inline: .5rem;
+    }
+
     /* (unused, kept for compat) */
     .svc-body-inner p {
       font-size: .88rem; color: var(--mid);
@@ -848,6 +893,15 @@
             <span class="svc-desc">Plantaire, palmaire ou faciale — une pression ciblée sur les zones réflexes pour soutenir les fonctions naturelles du corps.</span>
             <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
+          <div class="svc-preview-wrap">
+            <div class="svc-preview-inner">
+              <div class="svc-preview">
+                <span class="svc-chip">1ère séance <span class="svc-chip-sep">·</span> ~1h30 <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 110</span></span>
+                <span class="svc-chip">Séances suivantes <span class="svc-chip-sep">·</span> ~1h <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 100</span></span>
+                <span class="svc-chip">Plantaire · Palmaire · Faciale</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="svc-item">
@@ -858,6 +912,14 @@
             <span class="svc-desc">Massage doux par voie réflexe pour stimuler la circulation lymphatique et alléger le corps.</span>
             <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
+          <div class="svc-preview-wrap">
+            <div class="svc-preview-inner">
+              <div class="svc-preview">
+                <span class="svc-chip">~1h <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 100</span></span>
+                <span class="svc-chip">Par voie réflexe — pieds</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="svc-item">
@@ -868,6 +930,14 @@
             <span class="svc-desc">Sélection et préparation d'un mélange d'huiles essentielles personnalisé selon vos besoins.</span>
             <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
+          <div class="svc-preview-wrap">
+            <div class="svc-preview-inner">
+              <div class="svc-preview">
+                <span class="svc-chip">Consultation <span class="svc-chip-sep">·</span> ~30 min <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 60</span></span>
+                <span class="svc-chip">Forfait combiné Réflexologie + HE <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 130</span></span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="svc-item">
@@ -878,6 +948,14 @@
             <span class="svc-desc">Cures de macérats de bourgeons pour soutenir la régénération et la vitalité en profondeur.</span>
             <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
+          <div class="svc-preview-wrap">
+            <div class="svc-preview-inner">
+              <div class="svc-preview">
+                <span class="svc-chip">~30 min <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 60</span> <span class="svc-chip-sep">·</span> flacon 30 ml inclus</span>
+                <span class="svc-chip">Cure : 21 jours, pause 7 jours</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="svc-item">
@@ -888,6 +966,14 @@
             <span class="svc-desc">38 élixirs floraux pour travailler sur les états émotionnels et retrouver l'équilibre intérieur.</span>
             <span class="svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
+          <div class="svc-preview-wrap">
+            <div class="svc-preview-inner">
+              <div class="svc-preview">
+                <span class="svc-chip">~30 min <span class="svc-chip-sep">·</span> <span class="svc-chip-price">CHF 60</span> <span class="svc-chip-sep">·</span> flacon inclus</span>
+                <span class="svc-chip">38 élixirs floraux</span>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
