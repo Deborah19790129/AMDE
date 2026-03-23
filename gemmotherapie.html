@@ -137,22 +137,32 @@
     .dropdown-item.current .dropdown-item-name { color: var(--accent); }
 
     /* Page header */
-    .page-header {
-      padding-block: clamp(8rem, 14vh, 11rem) clamp(4rem, 6vh, 6rem);
-      border-bottom: 1px solid var(--line);
+    .page-header { position: relative; border-bottom: 1px solid var(--line); }
+    .page-header-bg { width: 100%; height: auto; display: block; }
+    .page-header-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,.05) 0%,
+        rgba(255,255,255,.30) 55%,
+        rgba(255,255,255,.92) 82%,
+        rgba(255,255,255,1)   100%);
     }
-    .page-header .back {
-      display: inline-flex; align-items: center; gap: .5rem;
-      font-size: .72rem; color: var(--mid); margin-bottom: 2rem; transition: color .2s;
+    .page-header-content { position: absolute; bottom: 0; left: 0; right: 0; padding-bottom: clamp(2.5rem, 4vh, 4rem); }
+    .page-header-inner { display: contents; }
+    @media (min-width: 768px) {
+      .page-header { padding-block: clamp(7rem, 12vh, 10rem) clamp(3rem, 5vh, 5rem); }
+      .page-header-bg { display: none; }
+      .page-header-overlay { display: none; }
+      .page-header-content { position: static; padding-bottom: 0; }
+      .page-header-inner { display: grid; grid-template-columns: 1fr 300px; gap: clamp(3rem, 5vw, 6rem); align-items: center; }
+      .page-header-image { display: block; width: 100%; height: auto; border-radius: 6px; }
     }
+    @media (max-width: 767px) { .page-header-image { display: none; } }
+    .page-header .back { display: inline-flex; align-items: center; gap: .5rem; font-size: .72rem; color: var(--mid); margin-bottom: 2rem; transition: color .2s; }
     .page-header .back:hover { color: var(--accent); }
     .page-header .back:hover svg { transform: translateX(-3px); }
     .page-header .back svg { transition: transform .2s var(--ease); }
-    .page-hl {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 6vw, 6rem);
-      font-weight: 400; line-height: .96; letter-spacing: -.03em;
-    }
+    .page-hl { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); font-weight: 400; line-height: .96; letter-spacing: -.03em; }
     .page-hl em { font-style: italic; color: var(--accent); }
     .page-sub { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 52ch; margin-top: 1.5rem; }
 
@@ -364,14 +374,27 @@
   </nav>
 
   <header class="page-header">
-    <div class="wrap">
-      <a href="index.html" class="back">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        Retour à l'accueil
-      </a>
-      <div class="lbl" style="margin-bottom:1rem">Soin</div>
-      <h1 class="page-hl">Gemmothérapie</h1>
-      <p class="page-sub">La médecine par les bourgeons — des tissus végétaux en pleine croissance, concentrant toute la vitalité de la plante.</p>
+    <!-- Mobile : image hero pleine largeur -->
+    <img src="bourgeons.jpeg" alt="Gemmothérapie" class="page-header-bg" />
+    <div class="page-header-overlay"></div>
+
+    <div class="page-header-content">
+      <div class="wrap">
+        <div class="page-header-inner">
+          <!-- Texte -->
+          <div>
+            <a href="index.html" class="back">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              Retour à l'accueil
+            </a>
+            <div class="lbl" style="margin-block:1.5rem 1rem">Soin</div>
+            <h1 class="page-hl">Gemmothérapie</h1>
+            <p class="page-sub">La médecine par les bourgeons — des tissus végétaux en pleine croissance, concentrant toute la vitalité de la plante.</p>
+          </div>
+          <!-- Desktop seulement : image à droite -->
+          <img src="bourgeons.jpeg" alt="Gemmothérapie" class="page-header-image" />
+        </div>
+      </div>
     </div>
   </header>
 
