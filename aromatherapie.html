@@ -198,9 +198,13 @@
     .indic-item::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
     .indic-item strong { color: var(--ink); font-weight: 500; }
 
-    .prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem .5rem; margin-block: .75rem 1.25rem; max-width: 64ch; }
-    .prop-item { font-size: .88rem; color: var(--mid); padding-left: 1.2rem; position: relative; line-height: 1.5; }
-    .prop-item::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+    .prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-block: 1.25rem 1.5rem; }
+    .prop-item { display: flex; gap: .75rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; font-size: .83rem; color: var(--mid); line-height: 1.55; }
+    .prop-item strong { display: block; font-size: .8rem; color: var(--ink); margin-bottom: .2rem; font-weight: 500; }
+    .prop-dot { flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: .45rem; }
+    .warning-title { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--bronze); margin-bottom: .75rem; }
+    .warning-box .ci-list { margin:0; }
+    .warning-box .ci-item::before { color: var(--bronze); }
 
     .info-box { background: var(--surface); border-left: 2px solid var(--accent); padding: 1.4rem 1.6rem; border-radius: 0 8px 8px 0; margin-block: 1.25rem; }
     .info-box p { margin-bottom: 0; font-size: .9rem; }
@@ -359,44 +363,70 @@
 
           <div class="divider"></div>
 
+          <!-- Les hydrolats -->
+          <h2>Les <em>hydrolats</em></h2>
+          <p>Un hydrolat est un produit obtenu par distillation des plantes. Lors du processus de distillation, de la vapeur d'eau extrait les composés volatils des plantes, y compris les huiles essentielles. Lorsque la vapeur se condense, elle forme deux phases distinctes : l'huile essentielle qui flotte à la surface, et l'hydrolat, l'eau aromatique résultante.</p>
+          <p>L'hydrolat contient des traces d'huiles essentielles et possède des propriétés thérapeutiques similaires, dans une concentration moindre mais tout aussi efficace. Il est utilisé en aromathérapie et en cosmétique pour ses propriétés apaisantes, tonifiantes ou purifiantes, selon la plante dont il est issu — rose, géranium, romarin, thym, etc.</p>
+
+          <div class="divider"></div>
+
           <!-- Modes d'utilisation -->
           <h2>Modes <em>d'utilisation</em></h2>
           <div class="method-list">
-            <div class="method-item"><strong>Par inhalation</strong> — l'utilisation par voie olfactive est pratique et facile : il suffit d'ajouter quelques gouttes à un diffuseur, un mouchoir ou un inhalateur. Les molécules aromatiques entrent en contact avec les récepteurs olfactifs de la muqueuse nasale, directement connectés au système limbique du cerveau, impliqué dans les émotions, la mémoire et le comportement.</div>
-            <div class="method-item"><strong>Par voie cutanée</strong> — la méthode la plus courante : application des huiles essentielles directement sur la peau, diluées dans une huile végétale.</div>
-            <div class="method-item"><strong>Par voie rectale ou vaginale</strong> — sous forme de suppositoire ou d'ovule.</div>
-            <div class="method-item"><strong>Par voie orale</strong> — la voie la plus délicate ; les huiles essentielles ont un goût prononcé, peuvent être ressenties comme agressives par les muqueuses, et leur éventuelle toxicité est plus grande par cette voie.</div>
+            <div class="method-item"><strong>Par inhalation</strong> — l'utilisation par voie olfactive est pratique et facile : quelques gouttes dans un diffuseur, un mouchoir ou un inhalateur suffisent. Les molécules aromatiques entrent en contact avec les récepteurs olfactifs, directement connectés au système limbique du cerveau, impliqué dans les émotions et la mémoire.</div>
+            <div class="method-item"><strong>Par voie cutanée</strong> — la méthode la plus courante : application sur la peau, toujours diluées dans une huile végétale pour éviter toute irritation.</div>
+            <div class="method-item"><strong>Par voie rectale ou vaginale</strong> — sous forme de suppositoire ou d'ovule, pour des actions locales ciblées.</div>
+            <div class="method-item"><strong>Par voie orale</strong> — la voie la plus délicate, à utiliser uniquement sur conseil d'un professionnel en raison d'une toxicité potentiellement plus élevée.</div>
           </div>
 
           <div class="warning-box">
             <strong class="warning-title">Précautions d'emploi</strong>
-            <p>Certaines huiles essentielles peuvent être photosensibilisantes, dermocaustiques, neurotoxiques ou hépatotoxiques. Il est important de bien se renseigner auprès d'un professionnel afin de connaître les précautions et les dosages recommandés pour chaque huile essentielle.</p>
+            <p style="margin-bottom:.75rem">Certaines huiles essentielles peuvent être photosensibilisantes, dermocaustiques, neurotoxiques ou hépatotoxiques. Il est essentiel de se renseigner auprès d'un professionnel pour connaître les précautions et dosages adaptés à chaque huile.</p>
+            <div class="ci-list" style="margin:0">
+              <div class="ci-item"><strong>Femmes enceintes ou allaitantes</strong> — usage déconseillé sans avis médical</div>
+              <div class="ci-item"><strong>Enfants de moins de 3 ans</strong> — certaines HE sont contre-indiquées</div>
+              <div class="ci-item"><strong>Personnes épileptiques</strong> — éviter les HE neurostimulantes</div>
+              <div class="ci-item"><strong>Personnes sous traitement médical lourd</strong> — consulter un professionnel avant usage</div>
+            </div>
           </div>
-
-          <div class="divider"></div>
-
-          <!-- Les hydrolats -->
-          <h2>Les <em>hydrolats</em></h2>
-          <p>Un hydrolat est un produit obtenu par distillation des plantes. Lors du processus de distillation, de la vapeur d'eau extrait les composés volatils des plantes, y compris les huiles essentielles. Lorsque la vapeur se condense, elle forme deux phases distinctes : l'huile essentielle qui flotte à la surface, et l'hydrolat, qui est l'eau aromatique résultante.</p>
-          <p>L'hydrolat contient des traces d'huiles essentielles et possède des propriétés thérapeutiques similaires, dans une concentration moindre mais tout aussi efficace. Il est utilisé en aromathérapie et en cosmétique pour ses propriétés apaisantes, tonifiantes ou purifiantes, selon la plante dont il est issu — rose, géranium, romarin, thym, etc.</p>
 
           <div class="divider"></div>
 
           <!-- Propriétés thérapeutiques -->
           <h2>Propriétés <em>thérapeutiques</em></h2>
-          <p>Les huiles essentielles sont utilisées pour leurs propriétés thérapeutiques :</p>
           <div class="prop-grid">
-            <div class="prop-item">Anti-infectieuses, immunostimulantes</div>
-            <div class="prop-item">Stimulantes, tonifiantes</div>
-            <div class="prop-item">Anti-inflammatoires</div>
-            <div class="prop-item">Circulatoires</div>
-            <div class="prop-item">Antalgiques</div>
-            <div class="prop-item">Anti-allergiques</div>
-            <div class="prop-item">Antitussives, expectorantes</div>
-            <div class="prop-item">Virucides, fongicides</div>
-            <div class="prop-item">Calmantes, apaisantes</div>
-            <div class="prop-item">Stimulantes digestives</div>
-            <div class="prop-item">Équilibrantes psycho-émotionnelles</div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Anti-infectieuses</strong><br>Immunostimulantes, virucides, fongicides</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Anti-inflammatoires</strong><br>Apaisement des inflammations et douleurs</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Calmantes & apaisantes</strong><br>Réduction du stress, anxiété, tensions nerveuses</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Stimulantes & tonifiantes</strong><br>Énergie, vitalité, concentration</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Circulatoires</strong><br>Amélioration de la circulation sanguine et lymphatique</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Antalgiques</strong><br>Soulagement des douleurs musculaires et articulaires</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Respiratoires</strong><br>Antitussives, expectorantes, décongestionnantes</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Équilibre psycho-émotionnel</strong><br>Harmonisation des émotions, soutien mental</div>
+            </div>
           </div>
 
           <div class="divider"></div>
@@ -404,13 +434,13 @@
           <!-- Indications -->
           <h2><em>Indications</em></h2>
           <div class="indic-list">
-            <div class="indic-item"><strong>Maladies psychiques</strong> — stress, fatigue, troubles du sommeil</div>
-            <div class="indic-item"><strong>Maladies cardio-vasculaires</strong> — varices, œdèmes, hémorroïdes</div>
-            <div class="indic-item"><strong>Maladies infectieuses respiratoires</strong> — rhume, sinusite, angine, otite, bronchite, toux</div>
-            <div class="indic-item"><strong>Pathologies digestives</strong> — côlon irritable, trouble du transit</div>
-            <div class="indic-item"><strong>Pathologies urogénitales</strong> — infections urinaires et vaginales, mycoses, ménopause</div>
-            <div class="indic-item"><strong>Maladies ostéo-articulaires</strong> — arthrose, sciatiques, tendinites, lumbagos</div>
-            <div class="indic-item"><strong>Problèmes dermatologiques</strong> — acné, eczéma, brûlures</div>
+            <div class="indic-item"><strong>Système nerveux & émotionnel</strong> — stress, fatigue, troubles du sommeil, anxiété</div>
+            <div class="indic-item"><strong>Système respiratoire</strong> — rhume, sinusite, angine, otite, bronchite, toux</div>
+            <div class="indic-item"><strong>Système ostéo-articulaire</strong> — arthrose, sciatiques, tendinites, lumbagos</div>
+            <div class="indic-item"><strong>Système cardio-vasculaire</strong> — varices, œdèmes, hémorroïdes</div>
+            <div class="indic-item"><strong>Système digestif</strong> — côlon irritable, troubles du transit, ballonnements</div>
+            <div class="indic-item"><strong>Système urogénital</strong> — infections urinaires et vaginales, mycoses, ménopause</div>
+            <div class="indic-item"><strong>Peau</strong> — acné, eczéma, brûlures, cicatrisation</div>
           </div>
 
         </div>
