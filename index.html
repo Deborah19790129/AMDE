@@ -496,6 +496,11 @@
       color: var(--ink); letter-spacing: -.01em;
     }
     .svc-desc { font-size: .82rem; color: var(--mid); max-width: 44ch; }
+    @media (max-width: 640px) {
+      .svc-item a { flex-wrap: wrap; gap: .3rem; padding-block: 1.2rem; }
+      .svc-main { flex: none; width: 100%; }
+      .svc-desc { width: 100%; }
+    }
     .svc-arrow {
       color: var(--faint);
       flex-shrink: 0;
