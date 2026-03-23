@@ -568,19 +568,31 @@
       line-height: 1.8; max-width: 40ch; margin-bottom: 1.5rem;
     }
     .onedoc-btn {
-      display: inline-flex; align-items: center; gap: .55rem;
-      font-size: .8rem; font-weight: 500; letter-spacing: .04em;
-      color: var(--accent);
-      border: 1px solid rgba(255,255,255,.15);
-      padding: .65em 1.2em;
-      border-radius: 100px;
-      transition: background .2s, border-color .2s;
-      margin-bottom: 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+      color: #fff;
+      background: var(--accent);
+      padding: 1.25rem 1.75rem;
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(74,111,81,.35);
     }
     .onedoc-btn:hover {
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.3);
+      background: #3a6b45;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(74,111,81,.45);
     }
+    .onedoc-btn-text { display: flex; flex-direction: column; gap: .2rem; }
+    .onedoc-btn-sub { font-family: var(--sans); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; opacity: .75; }
+    .onedoc-btn-arrow {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,.35); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .onedoc-btn:hover .onedoc-btn-arrow { background: rgba(255,255,255,.15); }
     .contact-info { display: flex; flex-direction: column; gap: 1.1rem; }
     .contact-row { display: flex; align-items: baseline; gap: 1rem; }
     .contact-row-lbl {
@@ -954,8 +966,13 @@
           <h2 class="contact-hl">Déborah<br><em>Menoud Bieri</em></h2>
           <p class="contact-body">Certifiée ASCA · Sur rendez-vous</p>
           <a href="https://www.onedoc.ch/fr/reflexologue/oron/pcs5v/deborah-menoud-bieri" target="_blank" rel="noopener" class="onedoc-btn">
-            Réserver en ligne via OneDoc
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span class="onedoc-btn-text">
+              <span class="onedoc-btn-sub">Prise de rendez-vous</span>
+              Réserver via OneDoc
+            </span>
+            <span class="onedoc-btn-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </a>
         </div>
 
