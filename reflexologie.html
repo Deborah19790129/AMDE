@@ -264,6 +264,11 @@
     .benefit::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
 
     /* Precaution list */
+    .prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-block: 1.25rem 1.5rem; }
+    .prop-item { display: flex; gap: .75rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; font-size: .83rem; color: var(--mid); line-height: 1.55; }
+    .prop-item strong { display: block; font-size: .8rem; color: var(--ink); margin-bottom: .2rem; font-weight: 500; }
+    .prop-dot { flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: .45rem; }
+    @media (max-width: 600px) { .prop-grid { grid-template-columns: 1fr; } }
     .precaution-list { display: flex; flex-direction: column; gap: .45rem; margin-block: .75rem 1.25rem; }
     .precaution {
       font-size: .88rem; color: var(--mid); padding-left: 1.2rem;
@@ -496,15 +501,39 @@
 
           <!-- Bienfaits -->
           <h2>Propriétés <em>thérapeutiques</em></h2>
-          <p>La réflexologie est utilisée pour ses propriétés thérapeutiques :</p>
-          <div class="benefit-list">
-            <div class="benefit">Relaxation, bien-être, réduction du stress et de l'anxiété, amélioration de la qualité du sommeil</div>
-            <div class="benefit">Soulagement de la douleur, amélioration de la mobilité articulaire</div>
-            <div class="benefit">Stimulation du système lymphatique</div>
-            <div class="benefit">Renforcement du système immunitaire</div>
-            <div class="benefit">Équilibre énergétique, élimination des blocages énergétiques</div>
-            <div class="benefit">Harmonisation du corps et de l'esprit</div>
-            <div class="benefit">Activation des mécanismes d'auto-guérison du corps et accélération du processus de guérison</div>
+          <div class="prop-grid">
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Relaxation profonde</strong><br>Apaisement du système nerveux, réduction du stress et de l'anxiété</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Qualité du sommeil</strong><br>Favorise un endormissement plus serein et un sommeil réparateur</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Soulagement des douleurs</strong><br>Réduction des tensions et amélioration de la mobilité articulaire</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Système lymphatique</strong><br>Stimulation du drainage naturel et élimination des toxines</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Immunité</strong><br>Renforcement des défenses naturelles de l'organisme</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Équilibre énergétique</strong><br>Libération des blocages et rééquilibrage des flux vitaux</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Harmonie corps–esprit</strong><br>Reconnexion à soi, sensation de globalité et de bien-être</div>
+            </div>
+            <div class="prop-item">
+              <span class="prop-dot"></span>
+              <div><strong>Auto-guérison</strong><br>Activation des mécanismes naturels de régénération du corps</div>
+            </div>
           </div>
 
           <div class="divider"></div>
