@@ -216,6 +216,8 @@
       .nav-links.open .dropdown-item-arrow { display: none; }
     } .nav-burger { display: flex; } .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89; } }
       @media (max-width: 767px) { .page-header .back { color: rgba(255,255,255,.95) !important; font-size: .85rem; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.5); } }
+      .mobile-only { display: none; }
+    @media (max-width: 768px) { .mobile-only { display: block !important; } }
   </style>
 </head>
 <body>
@@ -224,6 +226,7 @@
     <div class="wrap">
       <a href="index.html" class="nav-logo">Aux Merveilles des Essences</a>
       <ul class="nav-links" id="navLinks">
+        <li class="mobile-only"><a href="index.html">Accueil</a></li>
         <li class="nav-dropdown" id="soinsDropdown">
           <button class="nav-dropdown-trigger" id="soinsBtn" aria-haspopup="true" aria-expanded="false">
             Soins
