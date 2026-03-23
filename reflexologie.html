@@ -301,12 +301,25 @@
     /* Warning box */
     .warning-box {
       background: #fdf8f3;
-      border: 1px solid rgba(138,94,50,.15);
-      padding: 1.4rem 1.6rem;
-      border-radius: 8px;
+      border: 1px solid rgba(138,94,50,.18);
+      border-left: 3px solid var(--bronze);
+      padding: 1.5rem 1.75rem;
+      border-radius: 10px;
       margin-block: 1.25rem;
     }
-    .warning-box p { margin-bottom: 0; font-size: .9rem; }
+    .warning-title {
+      display: block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      margin-bottom: .75rem;
+    }
+    .warning-box p { font-size: .9rem; color: var(--mid); }
+    .warning-box .ci-list { margin-block: 0; }
+    .warning-box .ci-item { font-size: .86rem; }
+    .warning-box .ci-item::before { color: var(--bronze); }
 
     /* Price line */
     .price-line { font-size: .88rem; color: var(--mid); margin-top: .5rem; }
@@ -552,14 +565,15 @@
 
           <!-- Contre-indications -->
           <div class="warning-box">
-            <p><strong style="color:var(--ink);display:block;margin-bottom:.75rem;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase">Contre-indications</strong>La réflexologie ne s'applique pas lors des situations suivantes :</p>
-          </div>
-          <div class="ci-list">
-            <div class="ci-item"><strong>Fièvre élevée et maladie infectieuse</strong> — particulièrement chez les enfants, les personnes âgées ou affaiblies</div>
-            <div class="ci-item"><strong>Tissus localement atteints ou infectés</strong> — eczémas étendus ou mycoses des zones réflexes à traiter, les zones atteintes ne seront pas traitées</div>
-            <div class="ci-item"><strong>Thrombose veineuse / phlébite</strong> — jusqu'à 6 mois après l'événement</div>
-            <div class="ci-item"><strong>Anévrisme connu</strong></div>
-            <div class="ci-item"><strong>Plaies et traumatismes en cours</strong> — fractures, entorses, inflammations, blessures récentes empêchant toute mobilité</div>
+            <strong class="warning-title">Contre-indications</strong>
+            <p style="margin-bottom:1rem;">La réflexologie ne s'applique pas lors des situations suivantes :</p>
+            <div class="ci-list">
+              <div class="ci-item"><strong>Fièvre élevée et maladie infectieuse</strong> — particulièrement chez les enfants, les personnes âgées ou affaiblies</div>
+              <div class="ci-item"><strong>Tissus localement atteints ou infectés</strong> — eczémas étendus ou mycoses des zones réflexes à traiter</div>
+              <div class="ci-item"><strong>Thrombose veineuse / phlébite</strong> — jusqu'à 6 mois après l'événement</div>
+              <div class="ci-item"><strong>Anévrisme connu</strong></div>
+              <div class="ci-item"><strong>Plaies et traumatismes en cours</strong> — fractures, entorses, inflammations ou blessures récentes</div>
+            </div>
           </div>
 
           <div class="divider"></div>
