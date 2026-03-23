@@ -157,7 +157,10 @@
       .page-header-inner { display: grid; grid-template-columns: 1fr 300px; gap: clamp(3rem, 5vw, 6rem); align-items: center; }
       .page-header-image { display: block; width: 100%; height: auto; border-radius: 6px; }
     }
-    @media (max-width: 767px) { .page-header-image { display: none; } .page-header .back { color: rgba(255,255,255,.95); font-size: .82rem; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.4); } }
+    @media (max-width: 767px) {
+      .page-header-image { display: none; }
+      .page-header .back { color: rgba(255,255,255,.95) !important; font-size: .85rem; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.5); }
+    }
     .page-header .back { display: inline-flex; align-items: center; gap: .5rem; font-size: .72rem; color: var(--mid); margin-bottom: 2rem; transition: color .2s; }
     .page-header .back:hover { color: var(--accent); }
     .page-header .back:hover svg { transform: translateX(-3px); }
@@ -318,7 +321,7 @@
         inset: 0; top: 70px; background: #fff; padding: 2rem; gap: 1.5rem; z-index: 89;
       }
     }
-      @media (max-width: 767px) { .page-header .back { color: rgba(255,255,255,.95) !important; font-size: .85rem; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.5); } }
+      
       
     
   </style>
