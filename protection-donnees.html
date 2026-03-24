@@ -12,8 +12,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #f7f5f0; --ink: #1c1c1a; --mid: #6b6b68; --faint: #a8a8a4;
-      --line: #e8e5de; --accent: #2d5a3d; --serif: 'Instrument Serif', serif;
-      --sans: 'Outfit', sans-serif;
+      --line: #e8e5de; --accent: #2d5a3d; --surface: #fff;
+      --serif: 'Instrument Serif', serif; --sans: 'Outfit', sans-serif;
     }
     body { font-family: var(--sans); background: var(--bg); color: var(--ink); min-height: 100vh; }
     a { color: inherit; text-decoration: none; }
@@ -24,8 +24,8 @@
       background: var(--bg); border-bottom: 1px solid var(--line);
       padding: .75rem 0;
     }
-    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
-    .nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+    .nav .wrap { max-width: 1100px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; gap: .7rem; }
     .nav-logo img { height: 54px; width: auto; }
     .nav-logo-text { display: flex; flex-direction: column; gap: .05rem; }
@@ -33,33 +33,69 @@
     .nav-logo-sub { font-family: var(--serif); font-size: .68rem; color: var(--mid); font-style: italic; }
     .nav-back {
       display: flex; align-items: center; gap: .4rem;
-      font-size: .75rem; color: var(--mid);
-      transition: color .2s;
+      font-size: .75rem; color: var(--mid); transition: color .2s;
     }
     .nav-back:hover { color: var(--ink); }
 
-    /* Content */
+    /* Page */
     .page { padding: 3rem 0 5rem; }
-    .page h1 {
-      font-family: var(--serif); font-size: 2rem; font-weight: 400;
-      color: var(--ink); margin-bottom: 2rem;
-      padding-bottom: 1rem; border-bottom: 1px solid var(--line);
-    }
-    .doc-img {
-      width: 100%; max-width: 720px;
+
+    .doc-card {
+      background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 4px;
-      box-shadow: 0 2px 16px rgba(28,28,26,.08);
-      display: block;
+      border-radius: 8px;
+      padding: 3rem 3.5rem;
+      box-shadow: 0 2px 16px rgba(28,28,26,.05);
+    }
+
+    .doc-version {
+      font-size: .72rem; color: var(--faint); letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif); font-size: 1.9rem; font-weight: 400;
+      color: var(--ink); line-height: 1.2;
+      margin-bottom: 2rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .doc-intro {
+      font-size: .95rem; line-height: 1.75; color: var(--mid);
+      margin-bottom: 2rem; padding: 1.25rem 1.5rem;
+      background: var(--bg); border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .doc-body p {
+      font-size: .9rem; line-height: 1.8; color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .doc-signature {
+      margin-top: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      font-size: .88rem; line-height: 1.9; color: var(--mid);
+    }
+    .doc-signature strong {
+      display: block; font-family: var(--serif);
+      font-size: 1.05rem; color: var(--ink);
+      font-weight: 400; margin-bottom: .5rem;
     }
 
     /* Footer */
     .footer {
       background: var(--accent); color: rgba(255,255,255,.7);
-      padding: 2rem 0; border-top: none; margin-top: auto;
+      padding: 2rem 0;
     }
-    .footer .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer .wrap { max-width: 1100px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-copy { font-size: .72rem; color: rgba(255,255,255,.3); }
+    .footer-copy a { text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 640px) {
+      .doc-card { padding: 1.75rem 1.25rem; }
+      h1 { font-size: 1.4rem; }
+    }
   </style>
 </head>
 <body>
@@ -82,8 +118,47 @@
 
   <main class="page">
     <div class="wrap">
-      <h1>Déclaration de protection des données</h1>
-      <img src="protection-donnees.jpg" alt="Déclaration de protection des données — Aux Merveilles des Essences" class="doc-img" />
+      <div class="doc-card">
+
+        <p class="doc-version">Version 19.10.2021</p>
+
+        <h1>Déclaration de protection des données</h1>
+
+        <p class="doc-intro">
+          Moi, Déborah Menoud Bieri, pour le cabinet de thérapie complémentaire <em>Aux Merveilles des Essences</em> — Espace IN VIVO, Le Bourg 11, 1610 Oron-la-Ville — confirme par la présente que je respecte les règles suivantes conformément à la loi sur la protection des données et au règlement y relatif.
+        </p>
+
+        <div class="doc-body">
+
+          <p>L'objectif de la présente déclaration est de vous informer sur la manière dont je traite vos données personnelles et sensibles qui sont collectées dans mon cabinet.</p>
+
+          <p>Seules les données en rapport avec le traitement thérapeutique ou pertinentes pour une information sur d'éventuelles offres sont traitées. Il s'agit exclusivement de données que j'ai enregistrées avec votre accord, que vous avez communiqué(e) ou qui se trouvent dans des répertoires accessibles au public (annuaire téléphonique, etc.). Il peut s'agir de données générales sur votre personne (nom, adresse, numéro de téléphone, e-mail), d'indications sur votre santé (évolution de votre maladie, de diagnostics déjà posés et, le cas échéant, d'autres données que vous m'avez transmises en lien avec le traitement).</p>
+
+          <p>Ces données sont collectées, enregistrées et traitées exclusivement dans votre dossier de client·e, essentiellement dans le dossier anamnèse / dossier client·e, dans le but de la documentation pour la facturation. Dans ces lieux de conservation sont retranscrites toutes les étapes de traitement effectuées sur vos données, y compris les personnes qui en étaient responsables.</p>
+
+          <p>Vos données personnelles ne sont transmises qu'aux personnes ou aux secteurs de mon cabinet qui en ont besoin pour remplir leurs obligations contractuelles envers vous. Toutes les personnes sont informées des règles de protection des données en vigueur et sont tenues de les respecter.</p>
+
+          <p>Vos données ou des parties de celles-ci ne sont rendues accessibles à d'autres personnes ou institutions (assureurs, etc.) qu'avec votre accord explicite. Les ordonnances judiciaires ou la mise en œuvre de droits légitimes de la part du cabinet constituent des exceptions.</p>
+
+          <p>Si vos données sont collectées et traitées physiquement, elles sont conservées dans un local ou une armoire fermant à clé et non accessible à des tiers non autorisés. Les données collectées par voie électronique sont conservées de manière sûre (antivirus, mots de passe, etc.).</p>
+
+          <p>Sauf dispositions cantonales ou autres dispositions légales contraires, les données que j'ai collectées seront effacées vingt ans après la fin de nos relations contractuelles (traitement).</p>
+
+          <p>La communication écrite entre mon cabinet et vous se fait par e-mail, soit de manière cryptée à l'aide d'un programme ou, à défaut, d'une manière non cryptée avec votre accord écrit.</p>
+
+          <p>En tant que client·e actuel·le ou ancien·ne, vous pouvez me demander à tout moment un double de toutes les données que je collecte à votre sujet dans un format électronique courant. Seules les données physiquement disponibles seront fournies en copie. Si vous souhaitez invoquer un droit légalement reconnu à l'encontre de mes données en général, les données vous sont remises gratuitement et dans un délai maximum de 30 jours.</p>
+
+          <p>Je suis responsable de toutes les questions relatives au traitement de vos données personnelles figurant dans votre dossier client·e du cabinet et à l'exercice de vos droits.</p>
+
+        </div>
+
+        <div class="doc-signature">
+          <strong>Déborah Menoud Bieri<br>Aux Merveilles des Essences</strong>
+          Espace IN VIVO · Le Bourg 11 · 1610 Oron-la-Ville<br>
+          <a href="mailto:contact@aux-merveilles-des-essences.ch">contact@aux-merveilles-des-essences.ch</a> · 078 843 84 15
+        </div>
+
+      </div>
     </div>
   </main>
 
