@@ -794,7 +794,7 @@
     .fab {
       position: fixed; inset-block-end: 1.75rem; inset-inline-end: 1.75rem;
       z-index: 80;
-      display: flex; align-items: center; gap: .55rem;
+      display: none; align-items: center; gap: .55rem;
       background: var(--ink); color: var(--surface);
       border-radius: 100px; padding: .8em 1.6em;
       font-size: .72rem; font-weight: 500; letter-spacing: .09em;
@@ -860,7 +860,7 @@
       .svc-body-inner { grid-template-columns: 0 1fr; }
       .form-2col { grid-template-columns: 1fr; }
       .footer .wrap { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .fab { display: none; }
+      .fab { display: flex; }
     }
   </style>
 </head>
