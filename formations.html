@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formations & Certifications — Aux Merveilles des Essences</title>
+  <meta name="description" content="Formations, diplômes et agréments de Déborah Menoud Bieri — réflexologue certifiée ASCA à Oron-la-Ville." />
+  <link rel="canonical" href="https://aux-merveilles-des-essences.ch/formations.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f5f0; --surface: #fff; --ink: #1c1c1a; --mid: #6b6b68;
+      --faint: #a8a8a4; --line: #e8e5de; --accent: #2d5a3d; --bronze: #8a6a3a;
+      --serif: 'Instrument Serif', serif; --sans: 'Outfit', sans-serif;
+      --ease: cubic-bezier(.4,0,.2,1);
+    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 90;
+      padding-block: .3rem;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .3s var(--ease);
+    }
+    .nav.stuck { box-shadow: 0 2px 24px rgba(28,28,26,.06); }
+    .wrap { max-width: 1100px; margin-inline: auto; padding-inline: clamp(1.5rem,5vw,4rem); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; }
+    .nav-logo img { height:130px; width:auto; display:block; }
+    .nav-logo-text { display:flex; flex-direction:column; gap:.05rem; }
+    .nav-logo-name { font-family:var(--serif); font-size:.95rem; color:var(--ink); line-height:1.2; letter-spacing:-.01em; }
+    .nav-logo-sub { font-family:var(--serif); font-size:.72rem; color:var(--mid); line-height:1.2; font-style:italic; }
+    .nav-back {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .75rem; color: var(--mid); transition: color .2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+    @media (max-width:480px) {
+      .nav-logo img { height:80px; }
+      .nav-logo-name { font-size:.82rem; }
+      .nav-logo-sub { font-size:.68rem; }
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      padding-top: calc(130px + 2rem);
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .lbl { font-size: .65rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); margin-bottom: .75rem; }
+    .page-hl { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; color: var(--ink); line-height: 1.1; }
+    .page-sub { font-size: .95rem; color: var(--mid); line-height: 1.7; margin-top: .75rem; max-width: 520px; }
+
+    /* ── Content ── */
+    .content { padding-block: 4rem 6rem; }
+    .content-inner { max-width: 820px; }
+
+    h2 {
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--bronze); }
+
+    .divider { height: 1px; background: var(--line); margin-block: 3rem; }
+
+    /* ── Certification card ── */
+    .cert-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      display: flex; align-items: flex-start; gap: 1.5rem;
+    }
+    .cert-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--bronze);
+    }
+    .cert-body { flex: 1; }
+    .cert-title { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); margin-bottom: .25rem; }
+    .cert-school { font-size: .82rem; color: var(--mid); margin-bottom: .5rem; }
+    .cert-year { font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+    .cert-img-wrap { margin-top: 1rem; }
+    .cert-img-wrap img {
+      width: 100%; max-width: 480px;
+      border: 1px solid var(--line); border-radius: 4px;
+      box-shadow: 0 2px 12px rgba(28,28,26,.07);
+    }
+
+    /* ── ASCA badge ── */
+    .asca-block {
+      background: var(--accent); border-radius: 10px;
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center; gap: 2rem;
+      color: rgba(255,255,255,.9);
+    }
+    .asca-block svg { flex-shrink: 0; opacity: .7; }
+    .asca-title { font-family: var(--serif); font-size: 1.3rem; color: #fff; margin-bottom: .4rem; }
+    .asca-text { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.75); }
+    .asca-img-wrap { margin-top: 1.5rem; }
+    .asca-img-wrap img {
+      width: 100%; max-width: 480px;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    }
+
+    /* ── Footer ── */
+    .footer { background: var(--accent); padding: 2rem 0; }
+    .footer .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .footer-copy a { text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 640px) {
+      .cert-card { flex-direction: column; gap: 1rem; }
+      .asca-block { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Aux Merveilles des Essences" />
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Aux Merveilles des Essences</span>
+          <span class="nav-logo-sub">Déborah Menoud Bieri</span>
+        </div>
+      </a>
+      <a href="index.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Retour à l'accueil
+      </a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="wrap">
+      <div class="lbl">Parcours</div>
+      <h1 class="page-hl">Formations &amp; <em style="font-family:var(--serif);font-style:italic;color:var(--bronze)">Certifications</em></h1>
+      <p class="page-sub">Un engagement continu pour offrir des soins de qualité, fondés sur des formations reconnues et une pratique rigoureuse.</p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="wrap">
+      <div class="content-inner">
+
+        <!-- ASCA -->
+        <h2>Agrément <em>ASCA</em></h2>
+        <div class="asca-block">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <div>
+            <div class="asca-title">Thérapeute agréée ASCA</div>
+            <div class="asca-text">L'ASCA (Association Suisse des praticiens en médecine complémentaire et alternative) est une organisation de référence en Suisse. Cet agrément garantit une formation sérieuse et ouvre droit au remboursement par certaines assurances complémentaires.</div>
+            <!-- Ajouter le document ASCA ici une fois disponible -->
+            <!-- <div class="asca-img-wrap"><img src="asca.jpg" alt="Agrément ASCA" /></div> -->
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Diplômes -->
+        <h2>Diplômes &amp; <em>formations</em></h2>
+        <div class="cert-list">
+
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="cert-body">
+              <div class="cert-title">Réflexologie plantaire</div>
+              <div class="cert-school">À compléter</div>
+              <div class="cert-year">À compléter</div>
+              <!-- <div class="cert-img-wrap"><img src="diplome-reflexologie.jpg" alt="Diplôme réflexologie" /></div> -->
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="cert-body">
+              <div class="cert-title">Aromathérapie</div>
+              <div class="cert-school">À compléter</div>
+              <div class="cert-year">À compléter</div>
+              <!-- <div class="cert-img-wrap"><img src="diplome-aromatherapie.jpg" alt="Diplôme aromathérapie" /></div> -->
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+            </div>
+            <div class="cert-body">
+              <div class="cert-title">Gemmothérapie</div>
+              <div class="cert-school">À compléter</div>
+              <div class="cert-year">À compléter</div>
+              <!-- <div class="cert-img-wrap"><img src="diplome-gemmotherapie.jpg" alt="Diplôme gemmothérapie" /></div> -->
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="cert-body">
+              <div class="cert-title">Fleurs de Bach</div>
+              <div class="cert-school">À compléter</div>
+              <div class="cert-year">À compléter</div>
+              <!-- <div class="cert-img-wrap"><img src="diplome-fleurs-bach.jpg" alt="Diplôme fleurs de Bach" /></div> -->
+            </div>
+          </div>
+
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Formation continue -->
+        <h2>Formation <em>continue</em></h2>
+        <p style="font-size:.9rem; line-height:1.8; color:var(--mid);">
+          Je me forme régulièrement pour enrichir ma pratique et rester à jour avec les dernières avancées dans les thérapies naturelles. Chaque formation est une occasion d'approfondir mes connaissances et d'offrir des soins toujours plus adaptés.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span class="footer-copy">© 2024 Aux Merveilles des Essences · Déborah Menoud Bieri</span>
+      <a href="index.html" class="footer-copy" style="text-decoration:underline;text-underline-offset:3px;">Retour à l'accueil</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40), { passive: true });
+  </script>
+
+</body>
+</html>
