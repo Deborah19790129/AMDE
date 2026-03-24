@@ -1217,9 +1217,9 @@
       soinsDropdown.classList.contains('open') ? closeDropdown() : openDropdown();
     });
 
-    // Close on outside click
+    // Close on outside click (pas sur mobile quand le menu est ouvert)
     document.addEventListener('click', e => {
-      if (!soinsDropdown.contains(e.target)) closeDropdown();
+      if (!navLinks.classList.contains('open') && !soinsDropdown.contains(e.target)) closeDropdown();
     });
 
     // Close when a dropdown link is clicked

@@ -590,7 +590,7 @@
     });
 
     document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
+      if (!navLinks.classList.contains('open') && !dropdown.contains(e.target)) {
         dropdown.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
       }

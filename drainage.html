@@ -405,7 +405,7 @@
     soinsDropdown.addEventListener('mouseenter', openDropdown);
     soinsDropdown.addEventListener('mouseleave', closeDropdown);
     soinsBtn.addEventListener('click', () => soinsDropdown.classList.contains('open') ? closeDropdown() : openDropdown());
-    document.addEventListener('click', e => { if (!soinsDropdown.contains(e.target)) closeDropdown(); });
+    document.addEventListener('click', e => { if (!navLinks.classList.contains('open') && !soinsDropdown.contains(e.target)) closeDropdown(); });
   </script>
 </body>
 </html>
