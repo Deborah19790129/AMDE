@@ -706,6 +706,21 @@
       font-size: .88rem; color: rgba(255,255,255,.35);
       line-height: 1.8; max-width: 40ch; margin-bottom: 1.5rem;
     }
+    .payment-row {
+      display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1rem;
+      margin-bottom: 1.5rem; padding: .9rem 1.2rem;
+      background: rgba(255,255,255,.06); border-radius: 10px;
+      font-family: var(--sans); font-size: .82rem;
+    }
+    .payment-lbl {
+      letter-spacing: .1em; text-transform: uppercase; font-size: .7rem;
+      color: rgba(255,255,255,.4); margin-right: .4rem;
+    }
+    .payment-item {
+      display: flex; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.85); font-weight: 500;
+    }
+    .payment-note { color: rgba(255,255,255,.4); font-style: italic; }
     .contact-btns { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
     .onedoc-btn {
       flex: 1; min-width: 200px;
@@ -1164,6 +1179,18 @@
           <h2 class="contact-hl">Déborah<br><em>Menoud Bieri</em></h2>
           <p class="contact-body">Certifiée ASCA · Sur rendez-vous</p>
           <p class="contact-body" style="font-size:.85rem;opacity:.85;margin-top:.5rem;line-height:1.6;">Les soins peuvent être pris en charge par certaines assurances complémentaires. Je vous invite à vous renseigner directement auprès de votre caisse maladie.</p>
+          <div class="payment-row">
+            <span class="payment-lbl">Paiement</span>
+            <span class="payment-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Espèces
+            </span>
+            <span class="payment-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              TWINT
+            </span>
+            <span class="payment-note">· Payable sur place</span>
+          </div>
           <div class="contact-btns">
             <a href="https://www.onedoc.ch/fr/reflexologue/oron/pcs5v/deborah-menoud-bieri" target="_blank" rel="noopener" class="onedoc-btn">
               <span class="onedoc-btn-text">
