@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protection des données — Aux Merveilles des Essences</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f5f0; --ink: #1c1c1a; --mid: #6b6b68; --faint: #a8a8a4;
+      --line: #e8e5de; --accent: #2d5a3d; --serif: 'Instrument Serif', serif;
+      --sans: 'Outfit', sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 90;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+      padding: .75rem 0;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: .7rem; }
+    .nav-logo img { height: 54px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; gap: .05rem; }
+    .nav-logo-name { font-family: var(--serif); font-size: .9rem; color: var(--ink); line-height: 1.2; }
+    .nav-logo-sub { font-family: var(--serif); font-size: .68rem; color: var(--mid); font-style: italic; }
+    .nav-back {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .75rem; color: var(--mid);
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* Content */
+    .page { padding: 3rem 0 5rem; }
+    .page h1 {
+      font-family: var(--serif); font-size: 2rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 2rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--line);
+    }
+    .doc-img {
+      width: 100%; max-width: 720px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 2px 16px rgba(28,28,26,.08);
+      display: block;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--accent); color: rgba(255,255,255,.7);
+      padding: 2rem 0; border-top: none; margin-top: auto;
+    }
+    .footer .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .72rem; color: rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Aux Merveilles des Essences" />
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Aux Merveilles des Essences</span>
+          <span class="nav-logo-sub">Déborah Menoud Bieri</span>
+        </div>
+      </a>
+      <a href="index.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Retour à l'accueil
+      </a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="wrap">
+      <h1>Déclaration de protection des données</h1>
+      <img src="protection-donnees.jpg" alt="Déclaration de protection des données — Aux Merveilles des Essences" class="doc-img" />
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span class="footer-copy">© 2024 Aux Merveilles des Essences · Déborah Menoud Bieri</span>
+      <a href="index.html" class="footer-copy" style="text-decoration:underline;text-underline-offset:3px;">Retour à l'accueil</a>
+    </div>
+  </footer>
+
+</body>
+</html>
