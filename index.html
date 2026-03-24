@@ -555,6 +555,8 @@
     .about-portrait-wrap {
       position: sticky;
       top: 6rem;
+      max-width: 280px;
+      margin-left: auto;
     }
     .about-portrait {
       width: 100%;
@@ -565,8 +567,8 @@
       display: block;
     }
     @media (max-width: 900px) {
-      .about-portrait-wrap { position: static; }
-      .about-portrait { aspect-ratio: 4/3; object-position: center 20%; }
+      .about-portrait-wrap { position: static; max-width: 200px; margin: 0 auto; }
+      .about-portrait { aspect-ratio: 3/4; object-position: center 20%; }
     }
 
     /* ── Testimonial ─────────────────────────────────── */
