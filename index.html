@@ -1170,13 +1170,24 @@
     const burger = document.getElementById('burger');
     const navLinks = document.getElementById('navLinks');
     burger.addEventListener('click', () => {
+      const isOpening = !navLinks.classList.contains('open');
       burger.classList.toggle('open');
       navLinks.classList.toggle('open');
+      // Sur mobile, ouvre directement le sous-menu Soins
+      if (isOpening) {
+        soinsDropdown.classList.add('open');
+        soinsBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        soinsDropdown.classList.remove('open');
+        soinsBtn.setAttribute('aria-expanded', 'false');
+      }
     });
     navLinks.querySelectorAll('a').forEach(a =>
       a.addEventListener('click', () => {
         burger.classList.remove('open');
         navLinks.classList.remove('open');
+        soinsDropdown.classList.remove('open');
+        soinsBtn.setAttribute('aria-expanded', 'false');
       })
     );
 

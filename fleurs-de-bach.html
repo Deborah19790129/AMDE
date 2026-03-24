@@ -528,21 +528,26 @@
     window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40), { passive: true });
 
     // Burger
-        const burger = document.getElementById('burger');
-    burger.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
-      burger.classList.toggle('open');
-    });
-    document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('open');
-      burger.classList.remove('open');
-    }));
-
-    // Dropdown
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
     const dropdown = document.getElementById('soinsDropdown');
     const btn = document.getElementById('soinsBtn');
     const panel = document.getElementById('soinsPanel');
     let closeTimer;
+
+    burger.addEventListener('click', () => {
+      const isOpening = !navLinks.classList.contains('open');
+      navLinks.classList.toggle('open');
+      burger.classList.toggle('open');
+      if (isOpening) { dropdown.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+      else { dropdown.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+    });
+    document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      dropdown.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }));
 
     function openDropdown() {
       clearTimeout(closeTimer);
