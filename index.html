@@ -176,11 +176,34 @@
     .nav-logo {
       display: flex;
       align-items: center;
+      gap: .7rem;
+      text-decoration: none;
     }
     .nav-logo img {
-      height: 54px;
+      height: 72px;
       width: auto;
       display: block;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; gap: .05rem; }
+    .nav-logo-name {
+      font-family: var(--serif);
+      font-size: .95rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+    }
+    .nav-logo-sub {
+      font-family: var(--serif);
+      font-size: .72rem;
+      color: var(--mid);
+      line-height: 1.2;
+      font-style: italic;
+    }
+    @media (max-width: 480px) {
+      .nav-logo img { height: 52px; }
+      .nav-logo-name { font-size: .8rem; }
+      .nav-logo-sub { display: none; }
     }
     .nav-links {
       display: flex; align-items: center; gap: 1.5rem; list-style: none;
@@ -852,7 +875,13 @@
   <!-- Nav -->
   <nav class="nav" id="nav">
     <div class="wrap">
-      <a href="#" class="nav-logo"><img src="logo.png" alt="Aux Merveilles des Essences" /></a>
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Aux Merveilles des Essences" />
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Aux Merveilles des Essences</span>
+          <span class="nav-logo-sub">Déborah Menoud Bieri</span>
+        </div>
+      </a>
       <ul class="nav-links" id="navLinks">
 
         <!-- Soins dropdown -->
