@@ -205,13 +205,27 @@
       .nav {
         background: rgba(242,246,242,.97);
         border-bottom: 1px solid rgba(45,90,61,.15);
-        padding-block: .2rem;
+        padding-block: .25rem;
       }
-      .nav .wrap { justify-content: space-between; align-items: center; }
-      .nav-logo { flex-direction: row; align-items: center; gap: .55rem; }
-      .nav-logo img { height: 76px; }
-      .nav-logo-name { font-size: .92rem; line-height: 1.25; }
-      .nav-logo-sub { font-size: .72rem; display: block; }
+      .nav .wrap {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+      }
+      .nav-logo {
+        flex-direction: row;
+        align-items: center;
+        gap: .4rem;
+      }
+      .nav-logo img { height: 72px; }
+      .nav-logo-name { font-size: .88rem; line-height: 1.25; }
+      .nav-logo-sub { font-size: .68rem; display: block; }
+      .nav-burger {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
     .nav-links {
       display: flex; align-items: center; gap: 1.5rem; list-style: none;
