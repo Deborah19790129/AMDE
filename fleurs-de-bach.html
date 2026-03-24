@@ -81,7 +81,8 @@
     }
     .nav.stuck { box-shadow: 0 2px 24px rgba(28,28,26,.06); }
     .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-    .nav-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink); white-space: nowrap; }
+    .nav-logo { display:flex; align-items:center; }
+    .nav-logo img { height:54px; width:auto; display:block; }
     .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
     .nav-links a { font-size: .75rem; color: var(--mid); transition: color .2s; white-space: nowrap; position: relative; }
     .nav-links a:hover { color: var(--ink); }
@@ -330,7 +331,7 @@
 
   <nav class="nav" id="nav">
     <div class="wrap">
-      <a href="index.html" class="nav-logo">Aux Merveilles des Essences</a>
+      <a href="index.html" class="nav-logo"><img src="logo.png" alt="Aux Merveilles des Essences" /></a>
       <ul class="nav-links" id="navLinks">
         <li class="mobile-only"><a href="index.html">Accueil</a></li>
         <li class="nav-dropdown" id="soinsDropdown">
