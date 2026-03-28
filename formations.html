@@ -90,6 +90,15 @@
     .cert-title { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); margin-bottom: .25rem; }
     .cert-school { font-size: .82rem; color: var(--mid); margin-bottom: .5rem; }
     .cert-year { font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+    .cert-card--wide { grid-column: 1 / -1; }
+    .cert-desc { font-size: .85rem; color: var(--mid); line-height: 1.7; margin-top: .3rem; margin-bottom: .75rem; }
+    .doc-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; }
+    .doc-link {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-size: .85rem; color: var(--accent); font-family: var(--sans);
+      transition: opacity .2s;
+    }
+    .doc-link:hover { opacity: .7; }
     .doc-btn {
       display: inline-flex; align-items: center; gap: .4rem;
       margin-top: .75rem;
@@ -170,16 +179,16 @@
 
         <!-- ASCA -->
         <h2>Agrément <em>ASCA</em></h2>
-        <div class="asca-block">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <div>
-            <div class="asca-title">Thérapeute agréée ASCA</div>
-            <div class="asca-text">L'ASCA (Association Suisse des praticiens en médecine complémentaire et alternative) est une organisation de référence en Suisse. Cet agrément garantit une formation sérieuse et ouvre droit au remboursement par certaines assurances complémentaires.</div>
+        <div class="cert-card cert-card--wide">
+          <div class="cert-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="cert-body">
+            <div class="cert-title">Thérapeute agréée ASCA</div>
+            <div class="cert-desc">L'ASCA est une organisation de référence en Suisse. Cet agrément garantit une formation sérieuse et ouvre droit au remboursement par certaines assurances complémentaires.</div>
             <a href="diplomes/asca.pdf" target="_blank" rel="noopener" class="doc-btn">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Voir le document
+              Voir l'agrément
             </a>
           </div>
         </div>
@@ -190,115 +199,91 @@
         <h2>Diplômes &amp; <em>certifications</em></h2>
         <div class="cert-list">
 
-          <div class="cert-card">
+          <!-- Réflexologie — regroupé -->
+          <div class="cert-card cert-card--wide">
             <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <div class="cert-body">
-              <div class="cert-title">Réflexothérapeute</div>
-              <a href="diplomes/reflexotherapeute.pdf" target="_blank" rel="noopener" class="doc-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card">
-            <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             </div>
             <div class="cert-body">
               <div class="cert-title">Réflexologie &amp; Drainage lymphatique</div>
-              <a href="diplomes/attestation-reflexo-drainage.pdf" target="_blank" rel="noopener" class="doc-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
-              </a>
+              <ul class="doc-list">
+                <li>
+                  <a href="diplomes/reflexotherapeute.pdf" target="_blank" rel="noopener" class="doc-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Titre de réflexothérapeute
+                  </a>
+                </li>
+                <li>
+                  <a href="diplomes/certificat-reflexo.pdf" target="_blank" rel="noopener" class="doc-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Certificat de réflexologie
+                  </a>
+                </li>
+                <li>
+                  <a href="diplomes/attestation-reflexo-drainage.pdf" target="_blank" rel="noopener" class="doc-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Attestation réflexologie &amp; drainage
+                  </a>
+                </li>
+                <li>
+                  <a href="diplomes/diplome-mb.pdf" target="_blank" rel="noopener" class="doc-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Diplôme
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
+          <!-- Aromathérapie -->
           <div class="cert-card">
             <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <div class="cert-body">
-              <div class="cert-title">Certificat réflexologie</div>
-              <a href="diplomes/certificat-reflexo.pdf" target="_blank" rel="noopener" class="doc-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card">
-            <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <div class="cert-body">
-              <div class="cert-title">Diplôme</div>
-              <a href="diplomes/diplome-mb.pdf" target="_blank" rel="noopener" class="doc-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card">
-            <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div class="cert-body">
               <div class="cert-title">Aromathérapie</div>
               <a href="diplomes/diplome-aroma.pdf" target="_blank" rel="noopener" class="doc-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
+                Voir le diplôme
               </a>
             </div>
           </div>
 
+          <!-- Fleurs de Bach -->
           <div class="cert-card">
             <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
             <div class="cert-body">
               <div class="cert-title">Fleurs de Bach</div>
               <a href="diplomes/diplome-fleurs-de-bach.pdf" target="_blank" rel="noopener" class="doc-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
+                Voir le diplôme
               </a>
             </div>
           </div>
 
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Formations complémentaires -->
-        <h2>Formations <em>complémentaires</em></h2>
-        <div class="cert-list">
-
-          <div class="cert-card">
+          <!-- Formations complémentaires -->
+          <div class="cert-card cert-card--wide">
             <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
             </div>
             <div class="cert-body">
-              <div class="cert-title">Trigger Point</div>
-              <a href="diplomes/attestation-rme-trigger.pdf" target="_blank" rel="noopener" class="doc-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card">
-            <div class="cert-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-            </div>
-            <div class="cert-body">
-              <div class="cert-title">Massage bol kansu</div>
-              <a href="diplomes/attestation-rme-bol-kansu.pdf" target="_blank" rel="noopener" class="doc-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Voir le document
-              </a>
+              <div class="cert-title">Formations complémentaires</div>
+              <ul class="doc-list">
+                <li>
+                  <a href="diplomes/attestation-rme-trigger.pdf" target="_blank" rel="noopener" class="doc-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Trigger Point
+                  </a>
+                </li>
+                <li>
+                  <a href="diplomes/attestation-rme-bol-kansu.pdf" target="_blank" rel="noopener" class="doc-link">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Massage bol kansu
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -309,7 +294,7 @@
         <!-- Formation continue -->
         <h2>Formation <em>continue</em></h2>
         <p style="font-size:.9rem; line-height:1.8; color:var(--mid);">
-          Je me forme régulièrement pour enrichir ma pratique et rester à jour avec les dernières avancées dans les thérapies naturelles. Chaque formation est une occasion d'approfondir mes connaissances et d'offrir des soins toujours plus adaptés.
+          Je me forme régulièrement pour enrichir ma pratique et rester à jour avec les dernières avancées dans les thérapies naturelles.
         </p>
 
       </div>
